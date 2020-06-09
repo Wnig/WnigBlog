@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="x-rim-auto-match" content="none" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="<%= BASE_URL %>favicon.png"
+    />
+    <title>I'm Wnig. - 我最害怕孤独，无法生存。</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://unpkg.com/view-design/dist/styles/iview.css"
+    />
+    <link
+      href="https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script
+      type="text/javascript"
+      src="http://unpkg.com/view-design/dist/iview.min.js"
+    ></script>
+    <script src="./live2d/L2Dwidget.min.js"></script>
+    <script>
+      !(function(e, t, a) {
+        function n() {
+          c(
+            ".heart{min-width: 8vw;position: fixed;color: red;font-size: 2vw; white-space: nowrap;}"
+          ),
+            o(),
+            r();
+        }
+
+        function r() {
+          for (var e = 0; e < d.length; e++)
+            d[e].alpha <= 0
+              ? (t.body.removeChild(d[e].el), d.splice(e, 1))
+              : (d[e].y--,
+                (d[e].scale += 0.004),
+                (d[e].alpha -= 0.013),
+                (d[e].el.style.cssText =
+                  "left:" +
+                  d[e].x +
+                  "px;top:" +
+                  d[e].y +
+                  "px;opacity:" +
+                  d[e].alpha +
+                  ";transform:scale(" +
+                  d[e].scale +
+                  "," +
+                  d[e].scale +
+                  ") rotate(0deg);color:" +
+                  d[e].color +
+                  ";z-index:99999"));
+          requestAnimationFrame(r);
+        }
+
+        function o() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function(e) {
+            t && t(), i(e);
+          };
+        }
+
+        function i(e) {
+          var a = t.createElement("div");
+          var arr = [
+            "|_・)",
+            "<(￣︶￣)>",
+            '(￣▽￣)"',
+            "(～￣▽￣)～",
+            "(～o￣3￣)～",
+            "ㄟ(▔,▔)ㄏ",
+            "(⊙ˍ⊙)",
+            "(*ﾟ∀ﾟ)=3",
+            "⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄",
+            "(ಥ_ಥ)",
+            "_(:з」∠)_",
+            "ヽ(｀⌒´)ﾉ",
+            "(￣.￣)"
+          ];
+          var i = Math.floor(Math.random() * 13);
+
+          a.innerHTML = arr[i];
+          (a.className = "heart"),
+            d.push({
+              el: a,
+              x: e.clientX - 5,
+              y: e.clientY - 5,
+              scale: 0.5,
+              alpha: 1,
+              color: "#e07863"
+            }),
+            t.body.appendChild(a);
+        }
+
+        function c(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e));
+          } catch (t) {
+            a.styleSheet.cssText = e;
+          }
+          t.getElementsByTagName("head")[0].appendChild(a);
+        }
+
+        function s() {
+          return (
+            "rgb(" +
+            ~~(255 * Math.random()) +
+            "," +
+            ~~(255 * Math.random()) +
+            "," +
+            ~~(255 * Math.random()) +
+            ")"
+          );
+        }
+        var d = [];
+        (e.requestAnimationFrame = (function() {
+          return (
+            e.requestAnimationFrame ||
+            e.webkitRequestAnimationFrame ||
+            e.mozRequestAnimationFrame ||
+            e.oRequestAnimationFrame ||
+            e.msRequestAnimationFrame ||
+            function(e) {
+              setTimeout(e, 1e3 / 60);
+            }
+          );
+        })()),
+          n();
+      })(window, document);
+    </script>
+    <script>
+      L2Dwidget.init({
+        model: {
+          jsonPath:
+            "./live2d/live2d-widget-model-tororo/assets/tororo.model.json"
+        },
+        display: {
+          superSample: 1,
+          width: 150,
+          height: 150,
+          position: "right",
+          hOffset: 0,
+          vOffset: 0
+        },
+        mobile: {
+          show: true,
+          scale: 2,
+          motion: true
+        },
+        react: {
+          opacityDefault: 1,
+          opacityOnHover: 1
+        }
+      });
+    </script>
+  </body>
+  <style lang="scss">
+    html {
+      cursor: url("<%= BASE_URL %>ya.ico"), auto;
+    }
+  </style>
+</html>
