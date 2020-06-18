@@ -1,5 +1,5 @@
 <template>
-  <div class="blog">
+  <div class="blog ignore">
     <app-header></app-header>
     <div class="blog-con">
       <div class="tit">
@@ -148,7 +148,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.blog {
+.blog.ignore {
   min-height: 100vh;
   .blog-con {
     width: 880px;
@@ -274,85 +274,87 @@ export default {
 }
 </style>
 <style lang="scss">
-.nav {
-  position: relative;
-  .nav-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 44px;
-    .ivu-page-prev {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 44px;
+.ignore {
+  .nav {
+    position: relative;
+    .nav-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       height: 44px;
-      border-radius: 5px 0 0 5px;
-      border: none;
-      background: #333 !important;
-      .ivu-icon {
-        font-size: 20px;
-        line-height: 44px;
+      .ivu-page-prev {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 5px 0 0 5px;
+        border: none;
+        background: #333 !important;
+        .ivu-icon {
+          font-size: 20px;
+          line-height: 44px;
+        }
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-      a {
-        color: #bdbdbd;
+      .ivu-page-next {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 0 5px 5px 0;
+        border: none;
+        background: #333 !important;
+        .ivu-icon {
+          font-size: 20px;
+          line-height: 44px;
+        }
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-      a:hover {
-        color: #bdbdbd;
+      .ivu-page-item {
+        border: none;
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #000;
+        }
       }
-    }
-    .ivu-page-next {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 44px;
-      height: 44px;
-      border-radius: 0 5px 5px 0;
-      border: none;
-      background: #333 !important;
-      .ivu-icon {
-        font-size: 20px;
-        line-height: 44px;
+      .ivu-page-item-active {
+        border: none;
+        a {
+          color: #000;
+        }
+        a:hover {
+          color: #000;
+        }
       }
-      a {
-        color: #bdbdbd;
+      .ivu-page-disabled {
+        cursor: not-allowed;
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-      a:hover {
-        color: #bdbdbd;
-      }
-    }
-    .ivu-page-item {
-      border: none;
       a {
         color: #bdbdbd;
       }
       a:hover {
         color: #000;
       }
-    }
-    .ivu-page-item-active {
-      border: none;
-      a {
-        color: #000;
-      }
-      a:hover {
-        color: #000;
-      }
-    }
-    .ivu-page-disabled {
-      cursor: not-allowed;
-      a {
-        color: #bdbdbd;
-      }
-      a:hover {
-        color: #bdbdbd;
-      }
-    }
-    a {
-      color: #bdbdbd;
-    }
-    a:hover {
-      color: #000;
     }
   }
 }

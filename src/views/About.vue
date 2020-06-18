@@ -1,18 +1,18 @@
 <template>
-  <div class="blog">
+  <div class="blog ignore">
     <app-header></app-header>
     <div class="blog-con">
-      <nav-list ref="nav-list"
-                :nowItem.sync="nowItem"
-                :nowIndex.sync="nowIndex"
-                @changeTab="changeTab()"></nav-list>
+      <nav-list
+        ref="nav-list"
+        :nowItem.sync="nowItem"
+        :nowIndex.sync="nowIndex"
+        @changeTab="changeTab()"
+      ></nav-list>
       <div class="right-con">
         <div class="article-cons">
           <div class="art-con">
             <div class="tit">关于我</div>
-            <div class="article markdown-body"
-                 v-html="introduce">
-            </div>
+            <div class="article markdown-body" v-html="introduce"></div>
           </div>
         </div>
         <app-footer></app-footer>
@@ -24,44 +24,46 @@
 
 <script>
 import { getBlogInfo } from "@/api/http.js";
-import nav from '@/components/nav/nav'
-import header from '@/components/header/header'
-import footer from '@/components/footer/footer'
+import nav from "@/components/nav/nav";
+import header from "@/components/header/header";
+import footer from "@/components/footer/footer";
 export default {
   name: "blog",
   components: {
-    'nav-list': nav,
-    'app-header': header,
-    'app-footer': footer
+    "nav-list": nav,
+    "app-header": header,
+    "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: false,
       nowIndex: 7,
       nowItem: {},
       selIndex: 1,
-      introduce: ''
+      introduce: ""
     };
   },
-  created () {
-    this.getInfo()
+  created() {
+    this.getInfo();
   },
   methods: {
-    changeTab () {
+    changeTab() {
       if (this.nowItem.link === "blog") {
-        this.$router.replace(`/${this.nowItem.link}?type_art=${this.nowItem.type}`);
+        this.$router.replace(
+          `/${this.nowItem.link}?type_art=${this.nowItem.type}`
+        );
       } else {
         this.$router.push({ name: this.nowItem.link });
       }
     },
-    getInfo () {
-      getBlogInfo().then((res) => {
+    getInfo() {
+      getBlogInfo().then(res => {
         if (res.data.code === 200) {
-          this.introduce = res.data.result[0].introduce
+          this.introduce = res.data.result[0].introduce;
         } else {
-          this.$toast(res.data.msg)
+          this.$toast(res.data.msg);
         }
-      })
+      });
     }
   }
 };
@@ -69,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.blog {
+.blog.ignore {
   min-height: 100vh;
   .blog-con {
     display: flex;

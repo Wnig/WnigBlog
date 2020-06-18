@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login ignore">
     <div class="login-con">
       <img src="@/assets/img/logo.png" alt="" />
       <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
@@ -98,7 +98,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.login {
+.login.ignore {
   position: relative;
   display: flex;
   align-items: center;

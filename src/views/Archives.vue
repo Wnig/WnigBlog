@@ -1,29 +1,27 @@
 <template>
-  <div class="blog">
+  <div class="blog ignore">
     <app-header></app-header>
     <div class="blog-con">
-      <nav-list ref="nav-list"
-                :nowItem.sync="nowItem"
-                :nowIndex.sync="nowIndex"
-                @changeTab="changeTab()"></nav-list>
+      <nav-list
+        ref="nav-list"
+        :nowItem.sync="nowItem"
+        :nowIndex.sync="nowIndex"
+        @changeTab="changeTab()"
+      ></nav-list>
       <div class="right-con">
         <div class="article-cons">
           <div class="art-con">
             <div class="tit">归档</div>
             <div class="article">
-              <div class="list"
-                   v-for="(item, index) in list"
-                   :key="index">
-                <div class="year"
-                     v-if="item.isYare">
+              <div class="list" v-for="(item, index) in list" :key="index">
+                <div class="year" v-if="item.isYare">
                   {{ item.time_art.substring(0, 4) }}
                 </div>
                 <div class="art-link">
-                  <div class="link"
-                       @click="enterDetail(item)">
+                  <div class="link" @click="enterDetail(item)">
                     {{ item.tit_art }}
                   </div>
-                  <span>{{item.time_art.substring(0, 10)}}</span>
+                  <span>{{ item.time_art.substring(0, 10) }}</span>
                 </div>
               </div>
             </div>
@@ -38,17 +36,17 @@
 
 <script>
 import { artsList } from "@/api/http.js";
-import nav from '@/components/nav/nav'
-import header from '@/components/header/header'
-import footer from '@/components/footer/footer'
+import nav from "@/components/nav/nav";
+import header from "@/components/header/header";
+import footer from "@/components/footer/footer";
 export default {
   name: "blog",
   components: {
-    'nav-list': nav,
-    'app-header': header,
-    'app-footer': footer
+    "nav-list": nav,
+    "app-header": header,
+    "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: true,
       nowIndex: 6,
@@ -57,18 +55,20 @@ export default {
       list: []
     };
   },
-  created () {
+  created() {
     this.getAll();
   },
   methods: {
-    changeTab () {
+    changeTab() {
       if (this.nowItem.link === "blog") {
-        this.$router.replace(`/${this.nowItem.link}?type_art=${this.nowItem.type}`);
+        this.$router.replace(
+          `/${this.nowItem.link}?type_art=${this.nowItem.type}`
+        );
       } else {
         this.$router.push({ name: this.nowItem.link });
       }
     },
-    getAll () {
+    getAll() {
       let obj = {
         status_art: this.status_art
       };
@@ -123,7 +123,7 @@ export default {
           this.loadShow = false;
         });
     },
-    enterDetail (item) {
+    enterDetail(item) {
       this.$router.push(`/detail?id=${item.id_art}`);
     }
   }
@@ -132,7 +132,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.blog {
+.blog.ignore {
   min-height: 100vh;
   .blog-con {
     display: flex;

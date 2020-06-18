@@ -1,6 +1,5 @@
 <template>
-  <div class="loading-container"
-       v-if="loadShow">
+  <div class="loading-container ignore" v-if="loadShow">
     <div class="container animation-6">
       <div class="shape shape1"></div>
       <div class="shape shape2"></div>
@@ -28,7 +27,7 @@ export default {
   },
   methods: {},
   watch: {
-    loadShow: function (val) {
+    loadShow: function(val) {
       if (val) {
         setTimeout(() => {
           this.$parent.loadShow = false;
@@ -40,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-.loading-container {
+.loading-container.ignore {
   position: fixed;
   left: 0;
   right: 0;

@@ -1,39 +1,46 @@
 <template>
-  <div class="backstage">
+  <div class="backstage ignore">
     <app-header></app-header>
     <div class="content">
-      <div class="article-con"
-           v-if="Object.keys(detail).length">
+      <div class="article-con" v-if="Object.keys(detail).length">
         <h1 class="my-tit">
           <p @click="goBack">
-            <Icon type="ios-arrow-back"
-                  size="16" />
+            <Icon type="ios-arrow-back" size="16" />
             <strong>返回</strong>
           </p>
           <span>{{ status_art | statusFilter }}</span>
         </h1>
         <div class="control-menu">
           <p class="inf-left">
-            <span @click="controlArticle(1)"
-                  v-if="status_art == 1 || status_art == 2">编辑</span>
-            <span @click="controlArticle(2)"
-                  v-if="status_art == 1 || status_art == 2">删除</span>
-            <span @click="controlArticle(3)"
-                  v-if="status_art == 2">发表</span>
-            <span @click="controlArticle(4)"
-                  v-if="status_art == 3">彻底删除</span>
-            <span @click="controlArticle(5)"
-                  v-if="status_art == 3">撤销删除</span>
+            <span
+              @click="controlArticle(1)"
+              v-if="status_art == 1 || status_art == 2"
+              >编辑</span
+            >
+            <span
+              @click="controlArticle(2)"
+              v-if="status_art == 1 || status_art == 2"
+              >删除</span
+            >
+            <span @click="controlArticle(3)" v-if="status_art == 2">发表</span>
+            <span @click="controlArticle(4)" v-if="status_art == 3"
+              >彻底删除</span
+            >
+            <span @click="controlArticle(5)" v-if="status_art == 3"
+              >撤销删除</span
+            >
           </p>
           <p class="inf-right">
-            <span class="pre"
-                  @click="enterDetail(pageObj.preObj)">上一篇：{{
+            <span class="pre" @click="enterDetail(pageObj.preObj)"
+              >上一篇：{{
                 pageObj.preObj ? pageObj.preObj.tit_art : "没有了~"
-              }}</span>
-            <span class="next"
-                  @click="enterDetail(pageObj.nextObj)">下一篇：{{
+              }}</span
+            >
+            <span class="next" @click="enterDetail(pageObj.nextObj)"
+              >下一篇：{{
                 pageObj.nextObj ? pageObj.nextObj.tit_art : "没有了~"
-              }}</span>
+              }}</span
+            >
           </p>
         </div>
         <div class="art-con">
@@ -47,36 +54,43 @@
               <span>修改时间：{{ detail.update_time_art }}</span>
             </p>
           </div>
-          <div class="con markdown-body"
-               v-html="detail.con_art"></div>
+          <div class="con markdown-body" v-html="detail.con_art"></div>
         </div>
         <div class="control-menu">
           <p class="inf-left">
-            <span @click="controlArticle(1)"
-                  v-if="status_art == 1 || status_art == 2">编辑</span>
-            <span @click="controlArticle(2)"
-                  v-if="status_art == 1 || status_art == 2">删除</span>
-            <span @click="controlArticle(3)"
-                  v-if="status_art == 2">发表</span>
-            <span @click="controlArticle(4)"
-                  v-if="status_art == 3">彻底删除</span>
-            <span @click="controlArticle(5)"
-                  v-if="status_art == 3">撤销删除</span>
+            <span
+              @click="controlArticle(1)"
+              v-if="status_art == 1 || status_art == 2"
+              >编辑</span
+            >
+            <span
+              @click="controlArticle(2)"
+              v-if="status_art == 1 || status_art == 2"
+              >删除</span
+            >
+            <span @click="controlArticle(3)" v-if="status_art == 2">发表</span>
+            <span @click="controlArticle(4)" v-if="status_art == 3"
+              >彻底删除</span
+            >
+            <span @click="controlArticle(5)" v-if="status_art == 3"
+              >撤销删除</span
+            >
           </p>
           <p class="inf-right">
-            <span class="pre"
-                  @click="enterDetail(pageObj.preObj)">上一篇：{{
+            <span class="pre" @click="enterDetail(pageObj.preObj)"
+              >上一篇：{{
                 pageObj.preObj ? pageObj.preObj.tit_art : "没有了~"
-              }}</span>
-            <span class="next"
-                  @click="enterDetail(pageObj.nextObj)">下一篇：{{
+              }}</span
+            >
+            <span class="next" @click="enterDetail(pageObj.nextObj)"
+              >下一篇：{{
                 pageObj.nextObj ? pageObj.nextObj.tit_art : "没有了~"
-              }}</span>
+              }}</span
+            >
           </p>
         </div>
       </div>
-      <div v-else
-           class="no-data">~暂无数据~</div>
+      <div v-else class="no-data">~暂无数据~</div>
     </div>
     <app-footer></app-footer>
     <loading :loadShow="loadShow"></loading>
@@ -93,7 +107,7 @@ export default {
     "app-header": header,
     "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: true,
       classList: [
@@ -120,7 +134,7 @@ export default {
     };
   },
   filters: {
-    typeFilter (status) {
+    typeFilter(status) {
       const statusMap = {
         "1": "我的日常",
         "2": "学习与积累",
@@ -128,7 +142,7 @@ export default {
       };
       return statusMap[status];
     },
-    statusFilter (status) {
+    statusFilter(status) {
       const statusMap = {
         "1": "我的文章",
         "2": "草稿箱",
@@ -137,33 +151,35 @@ export default {
       return statusMap[status];
     }
   },
-  created () {
+  created() {
     this.status_art = this.$route.query.status || 0;
     this.getArtDetail();
   },
-  mounted () { },
+  mounted() {},
   methods: {
-    getArtDetail () {
+    getArtDetail() {
       let obj = {
         id_art: this.$route.query.id,
         status_art: this.status_art
       };
-      artDetail(obj).then(res => {
-        if (res.data.code === 200) {
-          this.detail = res.data.result;
-          this.detail.con_art = this.detail.con_art.replace(/&amp;lt;/g, "<");
-          this.detail.con_art = this.detail.con_art.replace(/&amp;gt;/g, ">");
-          this.detail = Object.assign({}, this.detail);
-          this.pageObj = {
-            preObj: res.data.preObj,
-            nextObj: res.data.nextObj
-          };
-        }
-      }).finally(() => {
-        this.loadShow = false;
-      });
+      artDetail(obj)
+        .then(res => {
+          if (res.data.code === 200) {
+            this.detail = res.data.result;
+            this.detail.con_art = this.detail.con_art.replace(/&amp;lt;/g, "<");
+            this.detail.con_art = this.detail.con_art.replace(/&amp;gt;/g, ">");
+            this.detail = Object.assign({}, this.detail);
+            this.pageObj = {
+              preObj: res.data.preObj,
+              nextObj: res.data.nextObj
+            };
+          }
+        })
+        .finally(() => {
+          this.loadShow = false;
+        });
     },
-    enterDetail (item) {
+    enterDetail(item) {
       if (item) {
         this.$router.replace(
           `/mydetail?status=${item.status_art}&id=${item.id_art}`
@@ -171,7 +187,7 @@ export default {
         this.getArtDetail();
       }
     },
-    controlArticle (type) {
+    controlArticle(type) {
       if (type == 1) {
         this.$router.push(
           `/mywrite?id=${this.detail.id_art}&status=${this.detail.status_art}`
@@ -190,11 +206,11 @@ export default {
         this.publish();
       }
     },
-    goBack () {
+    goBack() {
       this.$router.go(-1);
     },
     // 删除 / 彻底删除
-    deleteArticle () {
+    deleteArticle() {
       let message = "你确定要删了我吗？ಥ_ಥ";
       this.$wConfirm({
         message: message,
@@ -231,7 +247,7 @@ export default {
         }
       });
     },
-    publish () {
+    publish() {
       let obj = {
         id_art: this.detail.id_art,
         tit_art: this.detail.tit_art,
@@ -255,7 +271,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.backstage {
+.backstage.ignore {
   min-height: 100vh;
   .content {
     width: 880px;

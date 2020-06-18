@@ -1,6 +1,5 @@
 <template>
-  <div class="loading-container"
-       v-if="loadShows">
+  <div class="loading-container ignore" v-if="loadShows">
     <div class="loading">
       <div class="loading-text">
         <span class="loading-text-words">L</span>
@@ -33,7 +32,7 @@ export default {
   },
   methods: {},
   watch: {
-    loadShows: function (val) {
+    loadShows: function(val) {
       if (val) {
         setTimeout(() => {
           this.$parent.loadShows = false;
@@ -45,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-.loading-container {
+.loading-container.ignore {
   position: absolute;
   left: 0;
   top: 0;

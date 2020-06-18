@@ -1,29 +1,34 @@
 <template>
-  <div class="backstage">
+  <div class="backstage ignore">
     <app-header></app-header>
     <div class="content">
       <div class="article-con">
         <div class="tit">{{ $route.query.id ? "编辑" : "写文章" }}</div>
         <div class="art-con">
-          <Input placeholder="请输入标题"
-                 v-model="articleObj.tit_art"
-                 maxlength="50" />
-          <mavon-editor id="edit"
-                        v-model="articleObj.cons_art"
-                        ref="md"
-                        :toolbars="toolbars"
-                        @imgAdd="handleEditorImgAdd"
-                        @imgDel="handleEditorImgDel"
-                        @change="changeMarkdown" />
+          <Input
+            placeholder="请输入标题"
+            v-model="articleObj.tit_art"
+            maxlength="50"
+          />
+          <mavon-editor
+            id="edit"
+            v-model="articleObj.cons_art"
+            ref="md"
+            :toolbars="toolbars"
+            @imgAdd="handleEditorImgAdd"
+            @imgDel="handleEditorImgDel"
+            @change="changeMarkdown"
+          />
           <div class="control-btn">
-            <Select style="width:180px"
-                    v-model="articleObj.type_art">
-              <Option v-for="item in classList"
-                      :value="item.value"
-                      :key="item.value">{{ item.label }}</Option>
+            <Select style="width:180px" v-model="articleObj.type_art">
+              <Option
+                v-for="item in classList"
+                :value="item.value"
+                :key="item.value"
+                >{{ item.label }}</Option
+              >
             </Select>
-            <Button type="primary"
-                    @click="publish(1)">发表</Button>
+            <Button type="primary" @click="publish(1)">发表</Button>
             <Button @click="publish(2)">保存草稿</Button>
             <Button @click="goBcak">取消</Button>
           </div>
@@ -45,7 +50,7 @@ export default {
     "app-header": header,
     "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: false,
       selIndex: 1,
@@ -110,15 +115,15 @@ export default {
       }
     };
   },
-  created () { },
-  mounted () {
+  created() {},
+  mounted() {
     this.status_art = this.$route.query.status || 1;
     if (this.$route.query.id) {
       this.getDetail();
     }
   },
   methods: {
-    getDetail () {
+    getDetail() {
       let obj = {
         id_art: this.$route.query.id,
         status_art: this.status_art
@@ -129,7 +134,7 @@ export default {
         }
       });
     },
-    publish (status) {
+    publish(status) {
       if (!this.articleObj.tit_art) {
         this.$toast("请填写标题");
         return;
@@ -177,10 +182,10 @@ export default {
         });
       }
     },
-    goBcak () {
+    goBcak() {
       this.$router.go(-1);
     },
-    handleEditorImgAdd (pos, $file) {
+    handleEditorImgAdd(pos, $file) {
       const blob = this.dataURItoBlob($file.miniurl);
       const formData = new FormData();
       formData.append("file", blob);
@@ -189,10 +194,10 @@ export default {
         this.$refs.md.$img2Url(pos, res.data.path);
       });
     },
-    handleEditorImgDel (pos) {
+    handleEditorImgDel(pos) {
       delete this.imgFile[pos];
     },
-    changeMarkdown (value, render) {
+    changeMarkdown(value, render) {
       this.articleObj.con_art = render;
       this.articleObj.cons_art = value;
       this.articleObj.con_txt_art = document.querySelector(
@@ -200,7 +205,7 @@ export default {
       ).innerText;
       this.articleObj = Object.assign({}, this.articleObj);
     },
-    dataURItoBlob (base64Data) {
+    dataURItoBlob(base64Data) {
       var byteString;
       if (base64Data.split(",")[0].indexOf("base64") >= 0) {
         byteString = atob(base64Data.split(",")[1]);
@@ -223,7 +228,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.backstage {
+.backstage.ignore {
   min-height: 100vh;
   .content {
     display: flex;

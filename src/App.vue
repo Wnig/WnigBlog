@@ -1,83 +1,73 @@
 <template>
-  <div id="app">
+  <div id="app" class="ignore">
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"
-                   :key="$route.fullpath" />
+      <router-view v-if="$route.meta.keepAlive" :key="$route.fullpath" />
     </keep-alive>
 
-    <router-view v-if="!$route.meta.keepAlive"
-                 :key="$route.fullpath"></router-view>
-    <div class="weather"
-         v-if="location">
+    <router-view
+      v-if="!$route.meta.keepAlive"
+      :key="$route.fullpath"
+    ></router-view>
+    <div class="weather" v-if="location">
       <div class="tips">
         <span class="name">
-          <Icon type="ios-pin-outline"
-                size="16" />{{ weather.city }}</span>
+          <Icon type="ios-pin-outline" size="16" />{{ weather.city }}</span
+        >
         <div class="location">
           <p>
             <span class="date">
-              <Icon type="md-calendar"
-                    size="16" />
-              {{ weather.date }}</span>
+              <Icon type="md-calendar" size="16" />
+              {{ weather.date }}</span
+            >
             <span class="week">{{ weather.week }}</span>
           </p>
           <p>
             <span class="tems">
-              <Icon type="ios-thermometer-outline"
-                    size="12" />{{
+              <Icon type="ios-thermometer-outline" size="12" />{{
                 weather.tem1
-              }}°~{{ weather.tem2 }}°</span>
+              }}°~{{ weather.tem2 }}°</span
+            >
             <span class="tems">{{ weather.win }}{{ weather.win_speed }}</span>
           </p>
         </div>
         <div class="weather-con">
           <span class="tem">{{ weather.tem }}°</span>
           <span class="wea">{{ weather.wea }}</span>
-          <i class="iconfont"
-             v-if="weather.wea_img == item.type"
-             v-for="(item, index) in weaIconList"
-             :key="index"
-             :class="item.class"></i>
+          <i
+            class="iconfont"
+            v-if="weather.wea_img == item.type"
+            v-for="(item, index) in weaIconList"
+            :key="index"
+            :class="item.class"
+          ></i>
           <span class="air">空气质量 : {{ weather.air }}</span>
         </div>
         <p>更新时间 : {{ weather.update_time }}</p>
       </div>
     </div>
-    <div class="music"
-         :class="{ out: isOut }">
+    <div class="music" :class="{ out: isOut }">
       <div class="img">
-        <img :class="{ on: isPlay }"
-             :src="musicList[nowIndex].imgurl"
-             alt="" />
+        <img :class="{ on: isPlay }" :src="musicList[nowIndex].imgurl" alt="" />
       </div>
       <div class="music-info">
         <p>{{ musicList[nowIndex].name }}</p>
         <p>{{ musicList[nowIndex].singer }}</p>
         <div class="control-btn">
-          <audio id="audio"
-                 :src="musicList[nowIndex].url"
-                 preload="auto"
-                 autoplay></audio>
-          <i class="iconfont icon-icon-1"
-             @click="pre"></i>
-          <i class="iconfont icon-icon-2"
-             @click="stopBtn"
-             v-if="isPlay"></i>
-          <i class="iconfont icon-icon-6"
-             @click="playBtn"
-             v-else></i>
-          <i class="iconfont icon-icon-"
-             @click="next"></i>
+          <audio
+            id="audio"
+            :src="musicList[nowIndex].url"
+            preload="auto"
+            autoplay
+          ></audio>
+          <i class="iconfont icon-icon-1" @click="pre"></i>
+          <i class="iconfont icon-icon-2" @click="stopBtn" v-if="isPlay"></i>
+          <i class="iconfont icon-icon-6" @click="playBtn" v-else></i>
+          <i class="iconfont icon-icon-" @click="next"></i>
         </div>
       </div>
-      <div class="right-btn"
-           @click="clickMusic">
-        <Icon v-if="isOut"
-              type="ios-arrow-forward"
-              size="20" />
-        <Icon v-else
-              type="ios-arrow-back"
-              size="20" />
+      <div class="right-btn" @click="clickMusic">
+        <Icon v-if="isOut" type="ios-arrow-forward" size="20" />
+        <Icon v-else type="ios-arrow-back" size="20" />
       </div>
     </div>
     <loading :loadShow="loadShow"></loading>
@@ -89,7 +79,7 @@ import jsonp from "jsonp";
 import { counter } from "@/api/http.js";
 export default {
   name: "App",
-  data () {
+  data() {
     return {
       loadShow: true,
       isPlay: false,
@@ -188,20 +178,20 @@ export default {
       ]
     };
   },
-  created () {
+  created() {
     var hiddenProperty =
       "hidden" in document
         ? "hidden"
         : "webkitHidden" in document
-          ? "webkitHidden"
-          : "mozHidden" in document
-            ? "mozHidden"
-            : null;
+        ? "webkitHidden"
+        : "mozHidden" in document
+        ? "mozHidden"
+        : null;
     var visibilityChangeEvent = hiddenProperty.replace(
       /hidden/i,
       "visibilitychange"
     );
-    var onVisibilityChange = function () {
+    var onVisibilityChange = function() {
       if (!document[hiddenProperty]) {
         document.title = "I'm Wnig. - 我最害怕孤独，无法生存。";
       } else {
@@ -211,16 +201,16 @@ export default {
     document.addEventListener(visibilityChangeEvent, onVisibilityChange);
     this.getCounter();
   },
-  mounted () {
+  mounted() {
     this.getLocation();
     var audio = document.querySelector("#audio");
     let that = this;
-    audio.addEventListener("loadeddata", function () {
+    audio.addEventListener("loadeddata", function() {
       audio.paused ? (that.isPlay = false) : (that.isPlay = true);
     });
     audio.addEventListener(
       "ended",
-      function () {
+      function() {
         if (that.nowIndex == that.musicList.length - 1) {
           that.nowIndex = 0;
         } else {
@@ -233,31 +223,31 @@ export default {
   },
   methods: {
     // 统计访问人数
-    getCounter () {
+    getCounter() {
       counter()
-        .then(res => { })
+        .then(res => {})
         .finally(() => {
           this.loadShow = false;
         });
     },
-    playBtn () {
+    playBtn() {
       var audio = document.querySelector("#audio");
       var that = this;
       if (!this.isPlay) {
-        audio.addEventListener("canplay", function () {
+        audio.addEventListener("canplay", function() {
           audio.play();
           that.isPlay = true;
         });
       }
     },
-    stopBtn () {
+    stopBtn() {
       var audio = document.querySelector("#audio");
       if (this.isPlay) {
         audio.pause();
         this.isPlay = false;
       }
     },
-    pre () {
+    pre() {
       if (this.nowIndex == 0) {
         return;
       } else {
@@ -265,7 +255,7 @@ export default {
       }
       this.playBtn();
     },
-    next () {
+    next() {
       if (this.nowIndex == this.musicList.length - 1) {
         return;
       } else {
@@ -273,10 +263,10 @@ export default {
         this.playBtn();
       }
     },
-    clickMusic () {
+    clickMusic() {
       this.isOut = !this.isOut;
     },
-    getLocation () {
+    getLocation() {
       var data = {
         key: "FDRBZ-2T7RI-J5MGG-5OOCF-7D7KQ-N4FDM"
       };
@@ -284,7 +274,6 @@ export default {
       data.output = "jsonp";
       this.$jsonp(url, data)
         .then(res => {
-          console.log("==ip==", res);
           this.location = res.result.ip;
           this.getWeather();
         })
@@ -292,7 +281,7 @@ export default {
           console.log(error);
         });
     },
-    getWeather () {
+    getWeather() {
       // 获取天气
       var data = {
         version: "v61",
@@ -334,196 +323,200 @@ body {
   height: 100%;
   -webkit-overflow-scrolling: touch;
 }
-.weather {
-  position: fixed;
-  left: 10px;
-  top: 10px;
-  z-index: 1;
-  .tips {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    position: relative;
-    width: 210px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2px 5px -1px rgba(255, 255, 255, 1);
-    &::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      top: -15px;
-      width: 2px;
-      height: 15px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 2px 5px -1px rgba(255, 255, 255, 1);
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      right: 20px;
-      top: -15px;
-      width: 2px;
-      height: 15px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 2px 5px -1px rgba(255, 255, 255, 1);
-    }
-  }
-  .name {
-    max-width: 170px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    @include ell();
-  }
-  .location {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    p {
+.ignore {
+  .weather {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    z-index: 1;
+    .tips {
       display: flex;
       align-items: flex-start;
       justify-content: flex-start;
       flex-direction: column;
-      margin-right: 8px;
-      .date {
+      position: relative;
+      width: 210px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 5px -1px rgba(255, 255, 255, 1);
+      &::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: -15px;
+        width: 2px;
+        height: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 2px 5px -1px rgba(255, 255, 255, 1);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        right: 20px;
+        top: -15px;
+        width: 2px;
+        height: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 2px 5px -1px rgba(255, 255, 255, 1);
+      }
+    }
+    .name {
+      max-width: 170px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      @include ell();
+    }
+    .location {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      p {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        margin-right: 8px;
+        .date {
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          font-size: 16px;
+        }
+        .week {
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          font-size: 12px;
+        }
+        .tems {
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          font-size: 12px;
+        }
+      }
+    }
+    .weather-con {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      .tem {
+        height: 40px;
+        margin-right: 5px;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        line-height: 45px;
+        font-size: 28px;
+      }
+      .wea {
+        height: 40px;
+        margin-right: 5px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        line-height: 50px;
         font-size: 16px;
       }
-      .week {
+      .air {
+        height: 40px;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        line-height: 55px;
         font-size: 12px;
-      }
-      .tems {
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        font-size: 12px;
-      }
-    }
-  }
-  .weather-con {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    .tem {
-      height: 40px;
-      margin-right: 5px;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      line-height: 45px;
-      font-size: 28px;
-    }
-    .wea {
-      height: 40px;
-      margin-right: 5px;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      line-height: 50px;
-      font-size: 16px;
-    }
-    .air {
-      height: 40px;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      line-height: 55px;
-    }
-    i {
-      margin-right: 10px;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      line-height: 28px;
-      font-size: 16px;
-    }
-  }
-  p {
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  }
-}
-
-img {
-  content: normal !important;
-}
-.music {
-  position: fixed;
-  left: -200px;
-  bottom: 100px;
-  width: 220px;
-  padding: 10px 5px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 1);
-  background: #000;
-  z-index: 11;
-  transform: translateX(0px);
-  transition: transform 0.5s ease;
-  &.out {
-    transform: translateX(200px);
-    transition: transform 0.5s ease;
-  }
-  .img {
-    overflow: hidden;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-    border: 1px solid #fff;
-    box-shadow: 0 0px 10px 1px rgba(255, 255, 255, 1);
-    img {
-      width: 100%;
-      object-fit: fill;
-      &.on {
-        animation: rotate 10s linear infinite;
-      }
-    }
-  }
-  .music-info {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
-    p {
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.29);
-      white-space: nowrap;
-    }
-    .control-btn {
-      #audio {
-        display: none;
       }
       i {
-        font-size: 20px;
-        color: #fff;
-        text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.29);
-        cursor: pointer;
-        &.icon-icon-2 {
-          margin: 0 20px;
-        }
-        &.icon-icon-6 {
-          margin: 0 20px;
+        margin-right: 10px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        line-height: 28px;
+        font-size: 16px;
+      }
+    }
+    p {
+      font-size: 12px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  img {
+    content: normal !important;
+  }
+  .music {
+    position: fixed;
+    left: -200px;
+    bottom: 100px;
+    width: 220px;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 1);
+    background: #000;
+    z-index: 11;
+    transform: translateX(0px);
+    transition: transform 0.5s ease;
+    &.out {
+      transform: translateX(200px);
+      transition: transform 0.5s ease;
+    }
+    .img {
+      overflow: hidden;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 1px solid #fff;
+      box-shadow: 0 0px 10px 1px rgba(255, 255, 255, 1);
+      img {
+        width: 100%;
+        object-fit: fill;
+        &.on {
+          animation: rotate 10s linear infinite;
         }
       }
     }
+    .music-info {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+      p {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.29);
+        white-space: nowrap;
+      }
+      .control-btn {
+        #audio {
+          display: none;
+        }
+        i {
+          font-size: 20px;
+          color: #fff;
+          text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.29);
+          cursor: pointer;
+          &.icon-icon-2 {
+            margin: 0 20px;
+          }
+          &.icon-icon-6 {
+            margin: 0 20px;
+          }
+        }
+      }
+    }
+    .right-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      cursor: pointer;
+    }
   }
-  .right-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 20px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    cursor: pointer;
-  }
-}
-@-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
+  @-webkit-keyframes rotate {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+    }
   }
 }
 </style>

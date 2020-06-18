@@ -1,65 +1,77 @@
 <template>
-  <div class="backstage">
+  <div class="backstage ignore">
     <app-header></app-header>
     <div class="content">
-      <Form class="con"
-            ref="formInline"
-            :model="formInline"
-            :rules="ruleInline"
-            inline>
+      <Form
+        class="con"
+        ref="formInline"
+        :model="formInline"
+        :rules="ruleInline"
+        inline
+      >
         <div class="cons">
           <div class="left">
             <Divider orientation="left">基础信息</Divider>
             <FormItem prop="blog_name">
               <div class="item">
                 <span>博客名称：</span>
-                <Input maxlength="5"
-                       v-model="formInline.blog_name"
-                       show-word-limit
-                       placeholder="请输入博客名称"
-                       style="width:200px" />
+                <Input
+                  maxlength="5"
+                  v-model="formInline.blog_name"
+                  show-word-limit
+                  placeholder="请输入博客名称"
+                  style="width:200px"
+                />
               </div>
             </FormItem>
             <FormItem prop="blog_sign">
               <div class="item">
                 <span>博客签名：</span>
-                <Input maxlength="50"
-                       v-model="formInline.blog_sign"
-                       show-word-limit
-                       type="textarea"
-                       placeholder="请输入博客签名"
-                       style="width:200px" />
+                <Input
+                  maxlength="50"
+                  v-model="formInline.blog_sign"
+                  show-word-limit
+                  type="textarea"
+                  placeholder="请输入博客签名"
+                  style="width:200px"
+                />
               </div>
             </FormItem>
             <FormItem prop="author">
               <div class="item">
                 <span>作者名称：</span>
-                <Input maxlength="10"
-                       v-model="formInline.author"
-                       show-word-limit
-                       placeholder="请输入作者名称"
-                       style="width:200px" />
+                <Input
+                  maxlength="10"
+                  v-model="formInline.author"
+                  show-word-limit
+                  placeholder="请输入作者名称"
+                  style="width:200px"
+                />
               </div>
             </FormItem>
             <FormItem prop="sign">
               <div class="item">
                 <span>个性签名：</span>
-                <Input maxlength="50"
-                       v-model="formInline.sign"
-                       show-word-limit
-                       type="textarea"
-                       placeholder="请输入个性签名"
-                       style="width:200px" />
+                <Input
+                  maxlength="50"
+                  v-model="formInline.sign"
+                  show-word-limit
+                  type="textarea"
+                  placeholder="请输入个性签名"
+                  style="width:200px"
+                />
               </div>
             </FormItem>
             <FormItem prop="sign">
               <div class="item">
                 <span>星座：</span>
-                <Input maxlength="10"
-                       v-model="formInline.constellation"
-                       show-word-limit
-                       placeholder="请输入星座"
-                       style="width:200px" />
+                <Input
+                  maxlength="10"
+                  v-model="formInline.constellation"
+                  show-word-limit
+                  placeholder="请输入星座"
+                  style="width:200px"
+                />
               </div>
             </FormItem>
           </div>
@@ -67,21 +79,21 @@
             <Divider orientation="left">图片设置</Divider>
             <FormItem prop="img_url">
               <div class="item">
-                <div class="upload-img"
-                     v-if="formInline.img_url">
+                <div class="upload-img" v-if="formInline.img_url">
                   <img :src="formInline.img_url" />
                 </div>
                 <div class="upload">
-                  <input id="upload"
-                         @change="uploadImgs('img', $event)"
-                         class="upload-input"
-                         type="file"
-                         name="file"
-                         accept="image"
-                         ref="upload" />
+                  <input
+                    id="upload"
+                    @change="uploadImgs('img', $event)"
+                    class="upload-input"
+                    type="file"
+                    name="file"
+                    accept="image"
+                    ref="upload"
+                  />
                   <div style="width: 58px;height:58px;line-height: 58px;">
-                    <Icon type="ios-camera"
-                          size="20"></Icon>
+                    <Icon type="ios-camera" size="20"></Icon>
                   </div>
                 </div>
               </div>
@@ -89,21 +101,21 @@
             <Divider orientation="left">头部图片设置</Divider>
             <FormItem prop="header_url">
               <div class="item">
-                <div class="upload-img"
-                     v-if="formInline.header_url">
+                <div class="upload-img" v-if="formInline.header_url">
                   <img :src="formInline.header_url" />
                 </div>
                 <div class="upload">
-                  <input id="upload"
-                         @change="uploadImgs('header', $event)"
-                         class="upload-input"
-                         type="file"
-                         name="file"
-                         accept="image"
-                         ref="upload" />
+                  <input
+                    id="upload"
+                    @change="uploadImgs('header', $event)"
+                    class="upload-input"
+                    type="file"
+                    name="file"
+                    accept="image"
+                    ref="upload"
+                  />
                   <div style="width: 58px;height:58px;line-height: 58px;">
-                    <Icon type="ios-camera"
-                          size="20"></Icon>
+                    <Icon type="ios-camera" size="20"></Icon>
                   </div>
                 </div>
               </div>
@@ -111,21 +123,21 @@
             <Divider orientation="left">作者图片设置</Divider>
             <FormItem prop="author_url">
               <div class="item">
-                <div class="upload-img"
-                     v-if="formInline.author_url">
+                <div class="upload-img" v-if="formInline.author_url">
                   <img :src="formInline.author_url" />
                 </div>
                 <div class="upload">
-                  <input id="upload"
-                         @change="uploadImgs('author', $event)"
-                         class="upload-input"
-                         type="file"
-                         name="file"
-                         accept="image"
-                         ref="upload" />
+                  <input
+                    id="upload"
+                    @change="uploadImgs('author', $event)"
+                    class="upload-input"
+                    type="file"
+                    name="file"
+                    accept="image"
+                    ref="upload"
+                  />
                   <div style="width: 58px;height:58px;line-height: 58px;">
-                    <Icon type="ios-camera"
-                          size="20"></Icon>
+                    <Icon type="ios-camera" size="20"></Icon>
                   </div>
                 </div>
               </div>
@@ -134,18 +146,19 @@
         </div>
         <Divider orientation="left">自我介绍</Divider>
         <FormItem prop="introduce">
-          <mavon-editor id="edit"
-                        v-model="formInline.introduces"
-                        ref="md"
-                        :toolbars="toolbars"
-                        @imgAdd="handleEditorImgAdd"
-                        @imgDel="handleEditorImgDel"
-                        @change="changeMarkdown" />
+          <mavon-editor
+            id="edit"
+            v-model="formInline.introduces"
+            ref="md"
+            :toolbars="toolbars"
+            @imgAdd="handleEditorImgAdd"
+            @imgDel="handleEditorImgDel"
+            @change="changeMarkdown"
+          />
         </FormItem>
       </Form>
       <div class="btn">
-        <Button type="primary"
-                @click="editInfo('formInline')">提交</Button>
+        <Button type="primary" @click="editInfo('formInline')">提交</Button>
         <Button @click="goBcak">取消</Button>
       </div>
     </div>
@@ -164,7 +177,7 @@ export default {
     "app-header": header,
     "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: true,
       formInline: {},
@@ -223,17 +236,16 @@ export default {
       }
     };
   },
-  created () {
+  created() {
     this.uploadObj = {};
     this.getInfo();
   },
-  mounted () {
-  },
+  mounted() {},
   methods: {
-    goBcak () {
+    goBcak() {
       this.$router.go(-1);
     },
-    getInfo () {
+    getInfo() {
       let obj = {
         user_art: sessionStorage.getItem("user_art"),
         token_art: sessionStorage.getItem("Access-Token")
@@ -253,7 +265,7 @@ export default {
           this.loadShow = false;
         });
     },
-    editInfo (name) {
+    editInfo(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           let obj = {
@@ -283,7 +295,7 @@ export default {
         }
       });
     },
-    uploadImgs (type, e) {
+    uploadImgs(type, e) {
       let file = e.target.files || e.dataTransfer.files;
       if (!file.length) {
         return;
@@ -292,7 +304,7 @@ export default {
       this.imgtype = type;
       this.imgPreview(picavalue);
     },
-    imgPreview (file, callback) {
+    imgPreview(file, callback) {
       const that = this;
       // 创建一个reader
       const reader = new FileReader();
@@ -301,7 +313,7 @@ export default {
       if (!file || !window.FileReader) return;
       if (/^image/.test(file.type)) {
         // 读取成功后的回调
-        reader.onloadend = function () {
+        reader.onloadend = function() {
           const result = this.result;
           const blob = that.dataURItoBlob(result);
           const formData = new FormData();
@@ -326,7 +338,7 @@ export default {
         this.$toast("请上传正确的图片格式");
       }
     },
-    handleEditorImgAdd (pos, $file) {
+    handleEditorImgAdd(pos, $file) {
       const blob = this.dataURItoBlob($file.miniurl);
       const formData = new FormData();
       formData.append("file", blob);
@@ -335,14 +347,14 @@ export default {
         this.$refs.md.$img2Url(pos, res.data.path);
       });
     },
-    handleEditorImgDel (pos) {
+    handleEditorImgDel(pos) {
       delete this.imgFile[pos];
     },
-    changeMarkdown (value, render) {
+    changeMarkdown(value, render) {
       this.formInline.introduce = render;
       this.formInline.introduces = value;
     },
-    dataURItoBlob (base64Data) {
+    dataURItoBlob(base64Data) {
       var byteString;
       if (base64Data.split(",")[0].indexOf("base64") >= 0) {
         byteString = atob(base64Data.split(",")[1]);
@@ -365,7 +377,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.backstage {
+.backstage.ignore {
   min-height: 100vh;
   .content {
     width: 880px;

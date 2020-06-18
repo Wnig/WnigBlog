@@ -1,52 +1,49 @@
 <template>
-  <div class="confirm"
-       v-if="isShow">
+  <div class="confirm ignore" v-if="isShow">
     <div class="box">
-      <h1>{{title}}</h1>
-      <div class="message"
-           v-html="message"></div>
+      <h1>{{ title }}</h1>
+      <div class="message" v-html="message"></div>
       <div class="footers">
-        <div class="btn-1"
-             v-if="noBtnName !== null"
-             @click="closeBox">{{noBtnName}}</div>
-        <div class="btn-2"
-             @click="yesCallBack">{{yesBtnName}}</div>
+        <div class="btn-1" v-if="noBtnName !== null" @click="closeBox">
+          {{ noBtnName }}
+        </div>
+        <div class="btn-2" @click="yesCallBack">{{ yesBtnName }}</div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'confirm',
-  data () {
+  name: "confirm",
+  data() {
     return {
       isShow: false,
-      title: '提示',
-      message: '',
-      noBtnName: '取消',
-      yesBtnName: '确定',
+      title: "提示",
+      message: "",
+      noBtnName: "取消",
+      yesBtnName: "确定",
       noCallback: null,
       yesCallback: null
-    }
+    };
   },
   methods: {
-    closeBox () {
-      this.isShow = false
+    closeBox() {
+      this.isShow = false;
       if (this.noCallback !== null) {
-        this.noCallback()
+        this.noCallback();
       }
     },
-    yesCallBack () {
-      this.isShow = false
+    yesCallBack() {
+      this.isShow = false;
       if (this.yesCallback !== null) {
-        this.yesCallback()
+        this.yesCallback();
       }
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-.confirm {
+.confirm.ignore {
   position: fixed;
   top: 0;
   left: 0;

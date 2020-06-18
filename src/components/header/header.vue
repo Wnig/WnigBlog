@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header ignore">
     <img class="bg" v-lazy="headerUrl" alt="" />
     <div class="header-con">
       <div class="login" @click="goLogin">
@@ -75,7 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.header {
+.header.ignore {
   position: relative;
   display: flex;
   align-items: center;

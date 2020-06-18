@@ -1,41 +1,43 @@
 <template>
-  <div class="backstage">
+  <div class="backstage ignore">
     <app-header></app-header>
     <div class="content">
       <div class="nav">
-        <span @click="changeTab(item, index)"
-              :class="{ 'sel-item': index == selIndex }"
-              v-for="(item, index) in navList"
-              :key="index">{{ item.name }}</span>
+        <span
+          @click="changeTab(item, index)"
+          :class="{ 'sel-item': index == selIndex }"
+          v-for="(item, index) in navList"
+          :key="index"
+          >{{ item.name }}</span
+        >
       </div>
       <div class="article-con">
         <div class="tit">{{ TitName }}</div>
-        <div class="art-list"
-             v-if="list.length">
+        <div class="art-list" v-if="list.length">
           <div class="art-list-con">
             <ul>
-              <li v-for="(item, index) in list"
-                  :key="index">
-                <div class="
+              <li v-for="(item, index) in list" :key="index">
+                <div
+                  class="
                   item"
-                     @click="enterDetail(item)">
-                  <Icon type="
+                  @click="enterDetail(item)"
+                >
+                  <Icon
+                    type="
                   ios-bookmark"
-                        size="18" />
+                    size="18"
+                  />
                   <span>[{{ item.type_art | typeFilter }}]</span>
                   <p>{{ item.tit_art }}</p>
                 </div>
                 <div class="item">
-                  <Icon type="ios-time"
-                        size="18" />
+                  <Icon type="ios-time" size="18" />
                   <span>{{ item.time_art }}</span>
-                  <Icon v-if="status_art != 3"
-                        type="ios-create"
-                        size="18" />
-                  <strong v-if="status_art != 3"
-                          @click="enterEdit(item)">编辑</strong>
-                  <Icon type="md-trash"
-                        size="18" />
+                  <Icon v-if="status_art != 3" type="ios-create" size="18" />
+                  <strong v-if="status_art != 3" @click="enterEdit(item)"
+                    >编辑</strong
+                  >
+                  <Icon type="md-trash" size="18" />
                   <strong @click="deteleBtn(item)">{{
                     status_art != 3 ? "删除" : "彻底删除"
                   }}</strong>
@@ -44,68 +46,74 @@
             </ul>
           </div>
           <div class="page-con">
-            <Page @on-change="handlePage"
-                  :total="total"
-                  :page-size="pageSize" />
+            <Page
+              @on-change="handlePage"
+              :total="total"
+              :page-size="pageSize"
+            />
           </div>
         </div>
-        <div v-else
-             class="no-data">~暂无数据~</div>
+        <div v-else class="no-data">~暂无数据~</div>
       </div>
       <div class="search-list">
         <div class="search-list-con">
           <div class="title">关键词搜索</div>
           <div class="search">
-            <Input placeholder="请输入关键字"
-                   style="width: 180px"
-                   v-model="key_word" />
-            <Button @click="searchList"
-                    class="btn">搜索</Button>
+            <Input
+              placeholder="请输入关键字"
+              style="width: 180px"
+              v-model="key_word"
+            />
+            <Button @click="searchList" class="btn">搜索</Button>
           </div>
         </div>
         <div class="search-list-con">
           <div class="title">日期搜索</div>
           <div class="search">
-            <DatePicker type="date"
-                        placeholder="请选择日期"
-                        style="width: 180px"
-                        v-model="time_art"></DatePicker>
-            <Button class="btn"
-                    @click="searchList">搜索</Button>
+            <DatePicker
+              type="date"
+              placeholder="请选择日期"
+              style="width: 180px"
+              v-model="time_art"
+            ></DatePicker>
+            <Button class="btn" @click="searchList">搜索</Button>
           </div>
         </div>
         <div class="search-list-con">
           <div class="title">分类搜索</div>
           <div class="search">
-            <Select style="width:180px"
-                    v-model="type_art">
-              <Option v-for="item in classList"
-                      :value="item.value"
-                      :key="item.value">{{ item.label }}</Option>
+            <Select style="width:180px" v-model="type_art">
+              <Option
+                v-for="item in classList"
+                :value="item.value"
+                :key="item.value"
+                >{{ item.label }}</Option
+              >
             </Select>
-            <Button class="btn"
-                    @click="searchList">搜索</Button>
+            <Button class="btn" @click="searchList">搜索</Button>
           </div>
         </div>
         <div class="search-list-con">
           <div class="title">时光流年</div>
           <div class="search">
-            <div id="clock"
-                 class="light">
+            <div id="clock" class="light">
               <div class="display">
                 <div class="weekdays">
-                  <span :class="{ active: week == index }"
-                        v-for="(item, index) in getWeekday"
-                        :key="index">{{ item }}</span>
+                  <span
+                    :class="{ active: week == index }"
+                    v-for="(item, index) in getWeekday"
+                    :key="index"
+                    >{{ item }}</span
+                  >
                 </div>
                 <div class="clock-time">
-                  <Icon class="alarm"
-                        type="ios-alarm" />
+                  <Icon class="alarm" type="ios-alarm" />
                   <div class="digits">
-                    <i class="iconfont"
-                       v-for="(item, index) in getTimeArr"
-                       :key="index"
-                       :class="{
+                    <i
+                      class="iconfont"
+                      v-for="(item, index) in getTimeArr"
+                      :key="index"
+                      :class="{
                         'icon-shuzi0': item == '0',
                         'icon-shuzi1': item == '1',
                         'icon-shuzi2': item == '2',
@@ -117,7 +125,8 @@
                         'icon-shuzi8': item == '8',
                         'icon-shuzi9': item == '9',
                         'icon-icon50': item == ':'
-                      }"></i>
+                      }"
+                    ></i>
                   </div>
                 </div>
               </div>
@@ -141,15 +150,15 @@ import {
   searchDate
 } from "@/api/http.js";
 import moment from "moment";
-import header from '@/components/header/header'
-import footer from '@/components/footer/footer'
+import header from "@/components/header/header";
+import footer from "@/components/footer/footer";
 export default {
   name: "manage",
   components: {
-    'app-header': header,
-    'app-footer': footer
+    "app-header": header,
+    "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: false,
       delModel: false,
@@ -176,12 +185,12 @@ export default {
           link: "backstage"
         },
         {
-          status: '',
+          status: "",
           name: "编辑信息",
           link: "editInfo"
         },
         {
-          status: '',
+          status: "",
           name: "编辑相册",
           link: "editPhoto"
         }
@@ -222,7 +231,7 @@ export default {
     };
   },
   filters: {
-    typeFilter (status) {
+    typeFilter(status) {
       const statusMap = {
         "1": "我的日常",
         "2": "学习与积累",
@@ -231,12 +240,12 @@ export default {
       return statusMap[status];
     }
   },
-  created () {
+  created() {
     this.getArtList();
     this.alarmTimes = setInterval(this.getTime, 500);
   },
   methods: {
-    changeTab (item, ind) {
+    changeTab(item, ind) {
       if (item.link === "backstage") {
         this.selIndex = ind;
         this.pageNum = 1;
@@ -250,12 +259,12 @@ export default {
         this.$router.push({ name: item.link });
       }
     },
-    enterDetail (item) {
+    enterDetail(item) {
       this.$router.push(
         `/mydetail?status=${item.status_art}&id=${item.id_art}`
       );
     },
-    getArtList () {
+    getArtList() {
       let obj = {
         pageNum: this.pageNum,
         pageSize: this.pageSize,
@@ -274,18 +283,18 @@ export default {
         }
       });
     },
-    searchList () {
+    searchList() {
       this.pageNum = 1;
       this.getArtList();
     },
-    handlePage (size) {
+    handlePage(size) {
       this.pageNum = size;
       this.getArtList();
     },
-    enterEdit (item) {
+    enterEdit(item) {
       this.$router.push(`/mywrite?id=${item.id_art}&status=${item.status_art}`);
     },
-    deteleBtn (item) {
+    deteleBtn(item) {
       this.item = item;
       let message = "你确定要删了我吗？ಥ_ಥ";
       this.$wConfirm({
@@ -315,25 +324,25 @@ export default {
         }
       });
     },
-    deteleEssay () {
+    deteleEssay() {
       if (this.status_art != 3) {
         let obj = {
           status_art: this.status_art,
           id_art: this.item.id_art
         };
-        recycl(obj).then(res => { });
+        recycl(obj).then(res => {});
       } else {
         let obj = {
           status_art: this.item.status_art,
           id_art: this.item.id_art
         };
-        recyclDel(obj).then(res => { });
+        recyclDel(obj).then(res => {});
       }
     },
-    getWeek () {
+    getWeek() {
       return this.getWeekday[this.week];
     },
-    getTime () {
+    getTime() {
       let yy = new Date().getFullYear();
       let mm = new Date().getMonth() + 1;
       // 获取当前星期几
@@ -364,15 +373,15 @@ export default {
       this.isWeek = 2;
     }
   },
-  destroyed () {
-    clearInterval(this.getTime)
+  destroyed() {
+    clearInterval(this.getTime);
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.backstage {
+.backstage.ignore {
   min-height: 100vh;
   .content {
     display: flex;
@@ -456,6 +465,7 @@ export default {
                 display: flex;
                 align-items: center;
                 padding: 2px 0;
+                font-size: 14px;
                 cursor: pointer;
               }
               span {
@@ -473,6 +483,7 @@ export default {
         }
         .page-con {
           padding: 10px;
+          font-size: 12px;
         }
       }
       .no-data {

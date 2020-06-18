@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer ignore">
     <p>❤我不相信所谓的命运，我只相信我自己。❤</p>
     <p>
       Copyright ©2017 Powered By Wnig 闽ICP备18014223号
@@ -38,7 +38,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.footer {
+.footer.ignore {
   width: 100%;
   margin-top: 20px;
   padding: 20px 50px;

@@ -1,23 +1,24 @@
 <template>
-  <div class="resume">
+  <div class="resume ignore">
     <div class="resume-con">
       <h1>MY RESUME</h1>
       <div class="left-nav">
-        <span @click="changeTab(item)"
-              @mouseover="enter(item)"
-              @mouseout="leave(item)"
-              class="tag"
-              :class="{'clicked': index == tabindex, 'sel': item.isHover}"
-              v-for="(item, index) in navList"
-              :key="index">{{item.name}} <i class="iconfont"
-             :class="item.class"></i></span>
-        <span @click="jumpBlog"
-              class="tag">我的博客</span>
+        <span
+          @click="changeTab(item)"
+          @mouseover="enter(item)"
+          @mouseout="leave(item)"
+          class="tag"
+          :class="{ clicked: index == tabindex, sel: item.isHover }"
+          v-for="(item, index) in navList"
+          :key="index"
+          >{{ item.name }} <i class="iconfont" :class="item.class"></i
+        ></span>
+        <span @click="jumpBlog" class="tag">我的博客</span>
       </div>
       <div class="content">
-        <div class="my-item"
-             v-if="tabindex == 0">
-          <h3>关于我
+        <div class="my-item" v-if="tabindex == 0">
+          <h3>
+            关于我
             <p>About me</p>
           </h3>
           <div class="item-con">
@@ -53,15 +54,17 @@
             </div>
           </div>
         </div>
-        <div class="my-item"
-             v-if="tabindex == 1">
-          <h3>工作经验
+        <div class="my-item" v-if="tabindex == 1">
+          <h3>
+            工作经验
             <p>Work experience</p>
           </h3>
           <Timeline>
             <TimelineItem>
               <p class="time">2018.11 – 至今 | 环球商付厦门科技有限公司</p>
-              <p class="content">主要通过Vue.js开发H5微信公众号和后台管理系统。</p>
+              <p class="content">
+                主要通过Vue.js开发H5微信公众号和后台管理系统。
+              </p>
             </TimelineItem>
             <TimelineItem>
               <p class="time">2018.03 – 2018.11 | 司马图（厦门）科技有限公司</p>
@@ -70,72 +73,109 @@
               </p>
             </TimelineItem>
             <TimelineItem>
-              <p class="time">2016.08 – 2018.03 | 风筝（厦门）信息科技有限公司</p>
+              <p class="time">
+                2016.08 – 2018.03 | 风筝（厦门）信息科技有限公司
+              </p>
               <p class="content">
                 主要通过HTML5技术，实现PC平台、移动平台等项目的开发制作。
               </p>
             </TimelineItem>
           </Timeline>
         </div>
-        <div class="my-item"
-             v-if="tabindex == 2">
-          <h3>项目经验
+        <div class="my-item" v-if="tabindex == 2">
+          <h3>
+            项目经验
             <p>Project experience</p>
           </h3>
           <Timeline>
             <TimelineItem>
               <p class="time">2018.11 – 至今 | 环球商付厦门科技有限公司</p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />美味导航微信公众号
+                <Icon type="ios-bookmark-outline" size="14" />美味导航微信公众号
               </p>
-              <p class="content">项目描述：互联网+新餐饮的全方位体验，快速寻找美食，饭友帮忙点餐，记录美食路上的旅程，平台为商家打造了完整的互联网新餐饮解决方案，让商家快速跻身互联网潮店。</p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />美味导航后台管理系统
+                项目描述：互联网+新餐饮的全方位体验，快速寻找美食，饭友帮忙点餐，记录美食路上的旅程，平台为商家打造了完整的互联网新餐饮解决方案，让商家快速跻身互联网潮店。
               </p>
-              <p class="content">项目描述：为平台的商户提供管理店铺、商品的管理系统。</p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />会员中心微信端、会员后台管理系统
+                <Icon
+                  type="ios-bookmark-outline"
+                  size="14"
+                />美味导航后台管理系统
               </p>
-              <p class="content">项目描述：为平台的商户提供独立的会员系统，更好的管理顾客资源。</p>
+              <p class="content">
+                项目描述：为平台的商户提供管理店铺、商品的管理系统。
+              </p>
+              <p class="content">
+                <Icon
+                  type="ios-bookmark-outline"
+                  size="14"
+                />会员中心微信端、会员后台管理系统
+              </p>
+              <p class="content">
+                项目描述：为平台的商户提供独立的会员系统，更好的管理顾客资源。
+              </p>
             </TimelineItem>
             <TimelineItem>
               <p class="time">2018.03 – 2018.11 | 司马图（厦门）科技有限公司</p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />悠易游（平台、商户） 小程序</p>
-              <p class="content">项目描述：专注开发旅游产品、线路，提供旅游产品及相关服务，专业提供优质、性价比高的旅游服务。</p>
+                <Icon
+                  type="ios-bookmark-outline"
+                  size="14"
+                />悠易游（平台、商户） 小程序
+              </p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />欣宏途 小程序</p>
-              <p class="content">项目描述：欣宏途旅游，整合境内外优质旅游产品及周边服务资源，通过社交网络所形成的人际脉络形成新的行为冲动和内在。</p>
+                项目描述：专注开发旅游产品、线路，提供旅游产品及相关服务，专业提供优质、性价比高的旅游服务。
+              </p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" /><a href="http://www.smartmapdt.com">司马图集团官网</a></p>
-              <p class="content">项目描述：互联网全域解决方案提供商，司马图专注于产业项目资源整合和改造，探索新互联网经济下新兴的产业模式。</p>
+                <Icon type="ios-bookmark-outline" size="14" />欣宏途 小程序
+              </p>
+              <p class="content">
+                项目描述：欣宏途旅游，整合境内外优质旅游产品及周边服务资源，通过社交网络所形成的人际脉络形成新的行为冲动和内在。
+              </p>
+              <p class="content">
+                <Icon type="ios-bookmark-outline" size="14" /><a
+                  href="http://www.smartmapdt.com"
+                  >司马图集团官网</a
+                >
+              </p>
+              <p class="content">
+                项目描述：互联网全域解决方案提供商，司马图专注于产业项目资源整合和改造，探索新互联网经济下新兴的产业模式。
+              </p>
             </TimelineItem>
             <TimelineItem>
-              <p class="time">2016.08 – 2018.03 | 风筝（厦门）信息科技有限公司</p>
+              <p class="time">
+                2016.08 – 2018.03 | 风筝（厦门）信息科技有限公司
+              </p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />风筝官网、风筝校园旅游微信公众号</p>
-              <p class="content">项目描述：该项目主要为学生打造的校园旅游产品。</p>
+                <Icon
+                  type="ios-bookmark-outline"
+                  size="14"
+                />风筝官网、风筝校园旅游微信公众号
+              </p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />六合助手论坛、图库、918500彩票</p>
-              <p class="content">项目描述：该项目主要为用户提供各类彩票资讯。</p>
+                项目描述：该项目主要为学生打造的校园旅游产品。
+              </p>
               <p class="content">
-                <Icon type="ios-bookmark-outline"
-                      size="14" />金足球</p>
-              <p class="content">项目描述：该项目主要为用户提供足球、篮球赛事赛况的体育资讯APP。</p>
+                <Icon
+                  type="ios-bookmark-outline"
+                  size="14"
+                />六合助手论坛、图库、918500彩票
+              </p>
+              <p class="content">
+                项目描述：该项目主要为用户提供各类彩票资讯。
+              </p>
+              <p class="content">
+                <Icon type="ios-bookmark-outline" size="14" />金足球
+              </p>
+              <p class="content">
+                项目描述：该项目主要为用户提供足球、篮球赛事赛况的体育资讯APP。
+              </p>
             </TimelineItem>
           </Timeline>
         </div>
-        <div class="my-item"
-             v-if="tabindex == 3">
-          <h3>教育背景
+        <div class="my-item" v-if="tabindex == 3">
+          <h3>
+            教育背景
             <p>Education</p>
           </h3>
           <div class="cont">
@@ -143,34 +183,30 @@
             <p>主修课程：</p>
             <p>1、C语言程序设计、数据结构：具备良好的编程思想</p>
             <p>2、Web编程基础、ASP.NET：对网页的基本组成结构有一定的了解。</p>
-            <p>3、数据库系统原理与应用、数据库访问技术：能够熟练地操作SQL Server数据库，灵活地运用增、删、改、查语句。</p>
+            <p>
+              3、数据库系统原理与应用、数据库访问技术：能够熟练地操作SQL
+              Server数据库，灵活地运用增、删、改、查语句。
+            </p>
           </div>
         </div>
-        <div class="my-item"
-             v-if="tabindex == 4">
+        <div class="my-item" v-if="tabindex == 4">
           <div class="conts">
             <p @click="openMask('qq')">QQ : 770225508</p>
             <p @click="openMask('wx')">WeChat : xxxibwnig</p>
-            <p><a href="mailto:770225508@qq.com">E-mail : 770225508@qq.com</a></p>
+            <p>
+              <a href="mailto:770225508@qq.com">E-mail : 770225508@qq.com</a>
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="mask"
-         v-if="isImgShow">
+    <div class="mask" v-if="isImgShow">
       <div class="img">
-        <div class="close"
-             @click="isImgShow = false">
-          <Icon type="ios-close"
-                size="40"
-                color="#fff" />
+        <div class="close" @click="isImgShow = false">
+          <Icon type="ios-close" size="40" color="#fff" />
         </div>
-        <img v-if="imgType == 'qq'"
-             src="@/assets/img/qq.jpg"
-             alt="">
-        <img v-if="imgType == 'wx'"
-             src="@/assets/img/wx.jpg"
-             alt="">
+        <img v-if="imgType == 'qq'" src="@/assets/img/qq.jpg" alt="" />
+        <img v-if="imgType == 'wx'" src="@/assets/img/wx.jpg" alt="" />
       </div>
     </div>
     <loading :loadShow="loadShow"></loading>
@@ -180,59 +216,63 @@
 <script>
 export default {
   name: "resume",
-  data () {
+  data() {
     return {
       loadShow: false,
       tabindex: 0,
-      navList: [{
-        id: 0,
-        name: '关于我',
-        class: 'iconyuzhouxingqiu-22 ufo',
-        isHover: false
-      },
-      {
-        id: 1,
-        name: '工作经验',
-        class: 'iconyuzhouxingqiu-10 sun',
-        isHover: false
-      },
-      {
-        id: 2,
-        name: '项目经验',
-        class: 'iconyuzhouxingqiu-23 rocket',
-        isHover: false
-      }, {
-        id: 3,
-        name: '教育背景',
-        class: 'iconyuzhouxingqiu-05 star',
-        isHover: false
-      }, {
-        id: 4,
-        name: '联系我',
-        class: 'iconyuzhouxingqiu-07 moon',
-        isHover: false
-      }],
-      imgType: '',
+      navList: [
+        {
+          id: 0,
+          name: "关于我",
+          class: "iconyuzhouxingqiu-22 ufo",
+          isHover: false
+        },
+        {
+          id: 1,
+          name: "工作经验",
+          class: "iconyuzhouxingqiu-10 sun",
+          isHover: false
+        },
+        {
+          id: 2,
+          name: "项目经验",
+          class: "iconyuzhouxingqiu-23 rocket",
+          isHover: false
+        },
+        {
+          id: 3,
+          name: "教育背景",
+          class: "iconyuzhouxingqiu-05 star",
+          isHover: false
+        },
+        {
+          id: 4,
+          name: "联系我",
+          class: "iconyuzhouxingqiu-07 moon",
+          isHover: false
+        }
+      ],
+      imgType: "",
       isImgShow: false
     };
   },
-  created () { },
+  created() {},
   methods: {
-    jumpBlog () {
-      this.$router.push({ name: 'blog' });
+    jumpBlog() {
+      this.$router.push({ name: "blog" });
     },
-    changeTab (item) {
-      this.tabindex = item.id
+    changeTab(item) {
+      this.tabindex = item.id;
     },
-    enter (item) {
-      this.navList[item.id].isHover = true
+    enter(item) {
+      this.navList[item.id].isHover = true;
     },
-    leave (item) {
-      this.navList[item.id].isHover = false
+    leave(item) {
+      this.navList[item.id].isHover = false;
     },
-    openMask (str) {
-      this.imgType = str
-      this.isImgShow = true
+    openMask(str) {
+      this.imgType = str;
+      this.isImgShow = true;
     }
   }
 };
@@ -240,7 +280,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.resume {
+.resume.ignore {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -397,6 +437,7 @@ export default {
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             text-align: center;
+            font-size: 12px;
             cursor: pointer;
             -webkit-transition: background 0.2s, -webkit-transform ease-out 0.1s;
             transition: background 0.2s, -webkit-transform ease-out 0.1s;

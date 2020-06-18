@@ -1,59 +1,56 @@
 <template>
-  <div class="blog">
+  <div class="blog ignore">
     <app-header></app-header>
     <div class="blog-con">
-      <nav-list ref="nav-list"
-                :nowItem.sync="nowItem"
-                :nowIndex.sync="nowIndex"
-                @changeTab="changeTab()"></nav-list>
+      <nav-list
+        ref="nav-list"
+        :nowItem.sync="nowItem"
+        :nowIndex.sync="nowIndex"
+        @changeTab="changeTab()"
+      ></nav-list>
       <div class="right-con">
         <div class="content-area">
-          <div class="title"
-               v-if="nowIndex > 1 && nowIndex < 5">
+          <div class="title" v-if="nowIndex > 1 && nowIndex < 5">
             <h1>分类：{{ titList[nowIndex].name }}</h1>
             <p>{{ titList[nowIndex].describe }}</p>
           </div>
-          <div class="title"
-               v-if="nowIndex == 1">
+          <div class="title" v-if="nowIndex == 1">
             <h1>{{ titList[nowIndex].name }}</h1>
             <p>{{ titList[nowIndex].describe }}</p>
           </div>
-          <div class="content"
-               v-if="!list.length">
+          <div class="content" v-if="!list.length">
             <p class="no-data">没有文章哦~ㄟ( ▔, ▔ )ㄏ</p>
           </div>
-          <div class="art-list"
-               v-else>
-            <div class="article-cons"
-                 v-for="(item, index) in list"
-                 :key="index">
+          <div class="art-list" v-else>
+            <div
+              class="article-cons"
+              v-for="(item, index) in list"
+              :key="index"
+            >
               <div class="art-con">
-                <div class="tit"
-                     @click="enterDetail(item)">
+                <div class="tit" @click="enterDetail(item)">
                   {{ item.tit_art }}
                 </div>
                 <div class="article">{{ item.con_txt_art }}</div>
-                <div class="enter"
-                     @click="enterDetail(item)">继续阅读 →</div>
+                <div class="enter" @click="enterDetail(item)">继续阅读 →</div>
               </div>
               <div class="art-bottom">
-                <Icon type="ios-calendar-outline"
-                      size="20" />
+                <Icon type="ios-calendar-outline" size="20" />
                 <span class="time">{{ item.time_art }}</span>
-                <Icon type="ios-folder-outline"
-                      size="20" />
+                <Icon type="ios-folder-outline" size="20" />
                 <span class="type">{{ item.type_art | typeFilter }}</span>
-                <Icon type="ios-eye"
-                      size="20" />
+                <Icon type="ios-eye" size="20" />
                 <span class="time">{{ item.read_art }}</span>
               </div>
             </div>
           </div>
           <div class="nav">
             <div class="nav-list">
-              <Page @on-change="handlePage"
-                    :total="total"
-                    :page-size="pageSize" />
+              <Page
+                @on-change="handlePage"
+                :total="total"
+                :page-size="pageSize"
+              />
             </div>
           </div>
         </div>
@@ -77,7 +74,7 @@ export default {
     "app-header": header,
     "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: true,
       loadShows: true,
@@ -121,7 +118,7 @@ export default {
     };
   },
   filters: {
-    typeFilter (status) {
+    typeFilter(status) {
       const statusMap = {
         "1": "我的日常",
         "2": "学习与积累",
@@ -130,7 +127,7 @@ export default {
       return statusMap[status];
     }
   },
-  created () {
+  created() {
     if (this.$route.query.type_art) {
       this.type_art = this.$route.query.type_art;
       if (
@@ -152,7 +149,7 @@ export default {
     }
   },
   methods: {
-    changeTab () {
+    changeTab() {
       if (this.nowItem.link === "blog") {
         this.pageNum = 1;
         this.type_art = this.nowItem.type;
@@ -175,14 +172,14 @@ export default {
         this.$router.push({ name: this.nowItem.link });
       }
     },
-    enterDetail (item) {
+    enterDetail(item) {
       this.$router.push(`/detail?id=${item.id_art}`);
     },
-    handlePage (size) {
+    handlePage(size) {
       this.pageNum = size;
       this.getArtList();
     },
-    getArtList () {
+    getArtList() {
       this.loadShows = true;
       this.list = [];
       let obj = {
@@ -207,13 +204,13 @@ export default {
           this.loadShows = false;
         });
     },
-    preBtn () {
+    preBtn() {
       if (this.pageNum > 1) {
         this.pageNum--;
         this.getArtList();
       }
     },
-    nextBtn () {
+    nextBtn() {
       if (this.pageNum < this.pageList) {
         this.pageNum++;
         this.getArtList();
@@ -225,7 +222,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.blog {
+.blog.ignore {
   min-height: 100vh;
   padding-bottom: 20px;
   .blog-con {

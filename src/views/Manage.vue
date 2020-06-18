@@ -1,26 +1,25 @@
 <template>
-  <div class="manage">
-    <app-header :isClick.sync="isClick"
-                @preBtn="enterBlog"
-                @nextBtn="enterBackstage"></app-header>
+  <div class="manage ignore">
+    <app-header
+      :isClick.sync="isClick"
+      @preBtn="enterBlog"
+      @nextBtn="enterBackstage"
+    ></app-header>
     <div class="content">
       <div class="img-show">
         <div class="img-con">
-          <img src="@/assets/img/img_12.jpg"
-               alt="">
-          <img src="@/assets/img/img_03.jpg"
-               alt="">
+          <img src="@/assets/img/img_12.jpg" alt="" />
+          <img src="@/assets/img/img_03.jpg" alt="" />
         </div>
         <div class="img-con">
-          <img src="@/assets/img/img_14.jpg"
-               alt="">
-          <img src="@/assets/img/img_13.jpg"
-               alt="">
+          <img src="@/assets/img/img_14.jpg" alt="" />
+          <img src="@/assets/img/img_13.jpg" alt="" />
         </div>
       </div>
       <div class="says">
         <p class="say">❤태어나서 널 만나고 죽을 만큼 사랑하고❤</p>
-        <p class="say">我有一个男朋友，<br />
+        <p class="say">
+          我有一个男朋友，<br />
           我很爱他，他也很爱我，<br />
           甚至我嫁不出去都会娶我。<br />
           他受伤从来不让我知道，<br />
@@ -28,7 +27,8 @@
           他不让我染头发，<br />
           说我喜欢什么颜色他染给我看。<br />
           他向全世界承认我是他的女朋友，<br />
-          他说喜欢笑是因为我喜欢他微笑的样子，<br /> 他说只要不是他说的都不要信，<br />
+          他说喜欢笑是因为我喜欢他微笑的样子，<br />
+          他说只要不是他说的都不要信，<br />
           他说我是他坚持下来的动力，<br />
           他说他要服兵役，我说愿意等。<br />
           只是我们还不认识。
@@ -43,38 +43,36 @@
 </template>
 
 <script>
-import header from '@/components/header/header'
-import footer from '@/components/footer/footer'
+import header from "@/components/header/header";
+import footer from "@/components/footer/footer";
 export default {
-  name: 'manage',
+  name: "manage",
   components: {
-    'app-header': header,
-    'app-footer': footer
+    "app-header": header,
+    "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShow: false,
       selIndex: 1,
       isClick: true
-    }
+    };
   },
-  created () {
-
-  },
+  created() {},
   methods: {
-    enterBlog () {
-      this.$router.push({ 'name': 'blog' })
+    enterBlog() {
+      this.$router.push({ name: "blog" });
     },
-    enterBackstage () {
-      this.$router.push({ 'name': 'backstage' })
+    enterBackstage() {
+      this.$router.push({ name: "backstage" });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.manage {
+.manage.ignore {
   min-height: 100vh;
   .header-con {
     strong {

@@ -1,66 +1,67 @@
 <template>
-  <div class="blog">
+  <div class="blog ignore">
     <app-header></app-header>
     <div class="blog-con">
-      <nav-list ref="nav-list"
-                :nowItem.sync="nowItem"
-                :nowIndex.sync="nowIndex"
-                @changeTab="changeTab()"></nav-list>
+      <nav-list
+        ref="nav-list"
+        :nowItem.sync="nowItem"
+        :nowIndex.sync="nowIndex"
+        @changeTab="changeTab()"
+      ></nav-list>
       <div class="right-con">
         <div class="content-area">
           <div class="art-list">
             <div class="article-cons">
               <div class="art-con">
                 <div class="tit">{{ detail.tit_art }}</div>
-                <div class="article markdown-body"
-                     v-html="detail.con_art"></div>
+                <div
+                  class="article markdown-body"
+                  v-html="detail.con_art"
+                ></div>
                 <div class="aut-info">
                   <h2 class="author-heading">发布者</h2>
                   <div class="author-con">
-                    <img class="author-avatar"
-                         v-lazy="info.author_url"
-                         alt="" />
+                    <img
+                      class="author-avatar"
+                      v-lazy="info.author_url"
+                      alt=""
+                    />
                     <div class="author-description">
                       <h3 class="author-title">{{ info.author }}</h3>
                       <p class="author-bio">
                         {{ info.constellation }}
-                        <span @click="enterPage">想了解{{ info.author }}吗？快点我｡◕ᴗ◕｡ →</span>
+                        <span @click="enterPage"
+                          >想了解{{ info.author }}吗？快点我｡◕ᴗ◕｡ →</span
+                        >
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="art-bottom">
-                <Icon type="ios-calendar-outline"
-                      size="20" />
+                <Icon type="ios-calendar-outline" size="20" />
                 <span class="time">{{ detail.time_art }}</span>
-                <Icon type="ios-folder-outline"
-                      size="20" />
+                <Icon type="ios-folder-outline" size="20" />
                 <span class="type">{{ detail.type_art | typeFilter }}</span>
-                <Icon type="ios-eye"
-                      size="20" />
+                <Icon type="ios-eye" size="20" />
                 <span class="time">{{ detail.read_art }}</span>
               </div>
             </div>
           </div>
           <div class="nav">
             <div class="pre">
-              <Icon custom="i-icon ivu-icon-ios-arrow-back"
-                    size="20" />
+              <Icon custom="i-icon ivu-icon-ios-arrow-back" size="20" />
             </div>
             <div class="nav-list">
-              <span class="left"
-                    @click="enterDetail(pageObj.preObj)">{{
+              <span class="left" @click="enterDetail(pageObj.preObj)">{{
                 pageObj.preObj ? pageObj.preObj.tit_art : "没有了~"
               }}</span>
-              <span class="right"
-                    @click="enterDetail(pageObj.nextObj)">{{
+              <span class="right" @click="enterDetail(pageObj.nextObj)">{{
                 pageObj.nextObj ? pageObj.nextObj.tit_art : "没有了~"
               }}</span>
             </div>
             <div class="next">
-              <Icon custom="i-icon ivu-icon-ios-arrow-forward"
-                    size="20" />
+              <Icon custom="i-icon ivu-icon-ios-arrow-forward" size="20" />
             </div>
           </div>
         </div>
@@ -84,7 +85,7 @@ export default {
     "app-header": header,
     "app-footer": footer
   },
-  data () {
+  data() {
     return {
       loadShows: true,
       loadShow: true,
@@ -125,7 +126,7 @@ export default {
     };
   },
   filters: {
-    typeFilter (status) {
+    typeFilter(status) {
       const statusMap = {
         "1": "我的日常",
         "2": "学习与积累",
@@ -134,12 +135,12 @@ export default {
       return statusMap[status];
     }
   },
-  created () {
+  created() {
     this.getArtDetail();
     this.getInfo();
   },
   methods: {
-    changeTab () {
+    changeTab() {
       if (this.nowItem.link === "blog") {
         this.$router.replace(
           `/${this.nowItem.link}?type_art=${this.nowItem.type}`
@@ -148,7 +149,7 @@ export default {
         this.$router.push({ name: this.nowItem.link });
       }
     },
-    getArtDetail () {
+    getArtDetail() {
       this.loadShows = true;
       let obj = {
         id_art: this.$route.query.id,
@@ -185,18 +186,19 @@ export default {
         })
         .catch(data => {
           console.log(data);
-        }).finally(() => {
+        })
+        .finally(() => {
           this.loadShow = false;
           this.loadShows = false;
         });
     },
-    enterDetail (item) {
+    enterDetail(item) {
       if (item) {
         this.$router.replace(`/detail?id=${item.id_art}`);
         this.getArtDetail();
       }
     },
-    getInfo () {
+    getInfo() {
       getBlogInfo().then(res => {
         if (res.data.code === 200) {
           this.info = res.data.result[0];
@@ -205,7 +207,7 @@ export default {
         }
       });
     },
-    enterPage () {
+    enterPage() {
       this.$router.replace("/about");
     }
   }
@@ -214,7 +216,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.blog {
+.blog.ignore {
   min-height: 100vh;
   .blog-con {
     display: flex;
@@ -323,6 +325,7 @@ export default {
                   font-size: 18px;
                 }
                 p {
+                  font-size: 12px;
                   span {
                     margin-left: 10px;
                     opacity: 0.8;

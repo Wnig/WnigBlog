@@ -1,5 +1,5 @@
 <template>
-  <div class="nofound">
+  <div class="nofound ignore">
     <div class="menu">
       <span
         v-for="(item, index) in navData"
@@ -140,7 +140,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.nofound {
+.nofound.ignore {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,6 +183,7 @@ export default {
       font-weight: 700;
     }
     p {
+      font-size: 14px;
       color: #fff;
     }
     &::after {

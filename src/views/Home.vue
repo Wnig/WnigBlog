@@ -1,37 +1,42 @@
 <template>
-  <div class="home">
+  <div class="home ignore">
     <div class="my-home">
       <div class="my-home-con">
         <div class="my-bg">
-          <img class="bg-img"
-               v-lazy="require('@/assets/img/img_02.jpg')"
-               alt="" />
+          <img
+            class="bg-img"
+            v-lazy="require('@/assets/img/img_02.jpg')"
+            alt=""
+          />
         </div>
         <div class="my-info-con">
           <div class="my-info">
             <p>Wnig.</p>
-            <img @click="enterHome"
-                 class="my-header"
-                 v-lazy="require('@/assets/img/my_header.jpg')"
-                 alt="" />
+            <img
+              @click="enterHome"
+              class="my-header"
+              v-lazy="require('@/assets/img/my_header.jpg')"
+              alt=""
+            />
           </div>
           <p class="signature">“长夜将尽，来日可期。”</p>
         </div>
       </div>
       <div class="my-intro">
         <div class="item">
-          <img @click="enterHome"
-               class="my-header"
-               v-lazy="require('@/assets/img/my_header.jpg')"
-               alt="" />
+          <img
+            @click="enterHome"
+            class="my-header"
+            v-lazy="require('@/assets/img/my_header.jpg')"
+            alt=""
+          />
           <div class="my-content">
             <strong class="name">Wnig</strong>
             <div class="content">
               <p>QQ : 770225508</p>
               <p>E-mail : 770225508@qq.com</p>
               <p>WeChat : xxxibwnig</p>
-              <img v-lazy="require('@/assets/img/img_05.jpg')"
-                   alt="" />
+              <img v-lazy="require('@/assets/img/img_05.jpg')" alt="" />
             </div>
             <div class="from">
               <span class="time">2017-08-18</span>
@@ -47,15 +52,15 @@
 <script>
 export default {
   name: "home",
-  data () {
+  data() {
     return {
       imgUrl: ""
     };
   },
-  created () { },
-  mounted () { },
+  created() {},
+  mounted() {},
   methods: {
-    enterHome () {
+    enterHome() {
       this.$router.push({ name: "blog" });
     }
   }
@@ -64,7 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.home {
+.home.ignore {
   position: relative;
   display: flex;
   align-items: center;
