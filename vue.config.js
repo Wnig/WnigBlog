@@ -44,8 +44,8 @@ module.exports = {
         // target: "http://www.xxxiwnig.com",
         // target: "http://192.168.3.37/my-blog",
         // target: "http://192.168.0.102/my-blog",
-        // target: "http://192.168.3.200/my-blog",
-        target: "http://192.168.3.125/my-blog",
+        target: "http://192.168.3.200:8085/my-blog",
+        // target: "http://192.168.3.125/my-blog",
         changeOrigin: true,
         pathRewrite: {
           // "^/api": "" // 重写接口
