@@ -1,23 +1,48 @@
 <template>
-  <div class="nav-con ignore">
-    <div class="left-con">
-      <div class="myheader">
-        <img class="my-header" v-lazy="infoObj.img_url" alt="" />
+  <div class="nav-con">
+    <div class="ignore">
+      <div class="left-con">
+        <div class="myheader">
+          <img class="my-header"
+               v-lazy="infoObj.img_url"
+               alt="" />
+        </div>
+        <div class="info-list">
+          <strong>{{ infoObj.blog_name }}</strong>
+          <span>{{ infoObj.blog_sign }}</span>
+        </div>
+        <div class="nav">
+          <p @click="changeTabBtn(item, index)"
+             :class="{ 'sel-item': nowIndex == index }"
+             v-for="(item, index) in navData"
+             :key="index">
+            <span v-if="isAdmin">{{ item.name }}</span>
+            <span v-else-if="item.name != 'Manage'">{{ item.name }}</span>
+          </p>
+        </div>
       </div>
-      <div class="info-list">
-        <strong>{{ infoObj.blog_name }}</strong>
-        <span>{{ infoObj.blog_sign }}</span>
-      </div>
-      <div class="nav">
-        <p
-          @click="changeTabBtn(item, index)"
-          :class="{ 'sel-item': nowIndex == index }"
-          v-for="(item, index) in navData"
-          :key="index"
-        >
-          <span v-if="isAdmin">{{ item.name }}</span>
-          <span v-else-if="item.name != 'Manage'">{{ item.name }}</span>
-        </p>
+    </div>
+    <div class="i-mobile"
+         v-show="isOpen"
+         @click="closeMask">
+      <div class="left-con">
+        <div class="myheader">
+          <img class="my-header"
+               v-lazy="infoObj.img_url"
+               alt="" />
+        </div>
+        <div class="info-list">
+          <strong>{{ infoObj.blog_name }}</strong>
+          <span>{{ infoObj.blog_sign }}</span>
+        </div>
+        <div class="nav">
+          <p @click="changeTabBtn(item, index)"
+             :class="{ 'sel-item': nowIndex == index }"
+             v-for="(item, index) in navData"
+             :key="index">
+            <span v-if="item.name != 'Manage'">{{ item.name }}</span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -34,9 +59,13 @@ export default {
     nowItem: {
       type: Object,
       default: {}
+    },
+    isOpen: {
+      type: Boolean,
+      default: false
     }
   },
-  data() {
+  data () {
     return {
       isAdmin: false,
       infoObj: {},
@@ -94,15 +123,15 @@ export default {
       ]
     };
   },
-  created() {
+  created () {
     if (sessionStorage.getItem("Access-Token")) {
       this.isAdmin = true;
     }
     this.getInfo();
   },
-  mounted() {},
+  mounted () { },
   methods: {
-    changeTabBtn(item, index) {
+    changeTabBtn (item, index) {
       if (index == this.nowIndex) {
         return;
       }
@@ -110,7 +139,7 @@ export default {
       this.$emit("update:nowItem", item);
       this.$emit("changeTab");
     },
-    getInfo() {
+    getInfo () {
       getBlogInfo().then(res => {
         if (res.data.code === 200) {
           this.infoObj = res.data.result[0];
@@ -118,6 +147,9 @@ export default {
           this.$toast(res.data.msg);
         }
       });
+    },
+    closeMask () {
+      this.$emit("closeMask")
     }
   }
 };
@@ -196,7 +228,6 @@ export default {
         text-align: left;
         color: #1a1a1a;
         font-size: 14px;
-        font-weight: 400;
       }
     }
     .nav {
@@ -230,6 +261,133 @@ export default {
         font-weight: 700;
       }
     }
+  }
+}
+.i-mobile {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  .left-con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70vw;
+    height: 100vh;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02), 0 4px 10px rgba(0, 0, 0, 0.06);
+    animation: bounceInLeft 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    .myheader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      img {
+        width: 200px;
+        border-radius: 50%;
+      }
+    }
+    .info-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-bottom: 40px;
+      strong {
+        position: relative;
+        width: 100%;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+        font-size: 60px;
+        font-weight: 700;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+      }
+      strong::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        width: 100%;
+        margin: auto;
+        background: rgba(0, 0, 0, 0.4);
+        transform: scaleX(1);
+        transition: all 0.2s ease-in;
+      }
+      span {
+        width: 100%;
+        text-align: left;
+        color: #1a1a1a;
+        font-size: 28px;
+      }
+    }
+    .nav {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+      width: 100%;
+      p {
+        display: flex;
+        position: relative;
+        width: 100%;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.2s ease-in;
+        &.sel-item {
+          font-weight: 700;
+          transition: all 0.2s ease-in;
+        }
+      }
+      span {
+        width: 100%;
+        padding: 10px 40px;
+        color: #333;
+        text-align: center;
+        font-size: 28px;
+        @include ell();
+        @include border-top-1px(#e6e6e6);
+      }
+      p:hover {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+@keyframes bounceInLeft {
+  0% {
+    transform: translate3d(-70vw, 0, 0);
+  }
+  60% {
+    transform: translate3d(0px, 0, 0);
+  }
+  75% {
+    transform: translate3d(0px, 0, 0);
+  }
+  90% {
+    transform: translate3d(0px, 0, 0);
+  }
+  100% {
+    transform: translate3d(0px, 0, 0);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .ignore {
+    display: none;
+  }
+  .i-mobile {
+    display: block;
   }
 }
 </style>

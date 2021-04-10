@@ -49,6 +49,7 @@
             <Page
               @on-change="handlePage"
               :total="total"
+              :current.sync="pageNum"
               :page-size="pageSize"
             />
           </div>

@@ -52,7 +52,7 @@
     </div>
     <div class="nav">
       <div class="nav-list">
-        <Page @on-change="handlePage" :total="total" :page-size="pageSize" />
+        <Page @on-change="handlePage" :total="total" :current.sync="pageNum" :page-size="pageSize" />
       </div>
     </div>
     <app-footer></app-footer>
@@ -194,12 +194,12 @@ export default {
     }
     .waterfall {
       column-count: 4;
-      column-gap: 0;
+      column-gap: 10px;
       .item {
         position: relative;
         break-inside: avoid;
         box-sizing: border-box;
-        margin: 0 5px 10px 5px;
+        margin: 0 0px 10px 0px;
         padding: 10px;
         background: #fff;
         border-radius: 5px;

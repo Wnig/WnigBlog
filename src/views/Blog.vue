@@ -1,64 +1,138 @@
 <template>
-  <div class="blog ignore">
-    <app-header></app-header>
-    <div class="blog-con">
-      <nav-list
-        ref="nav-list"
-        :nowItem.sync="nowItem"
-        :nowIndex.sync="nowIndex"
-        @changeTab="changeTab()"
-      ></nav-list>
-      <div class="right-con">
-        <div class="content-area">
-          <div class="title" v-if="nowIndex > 1 && nowIndex < 5">
-            <h1>分类：{{ titList[nowIndex].name }}</h1>
-            <p>{{ titList[nowIndex].describe }}</p>
-          </div>
-          <div class="title" v-if="nowIndex == 1">
-            <h1>{{ titList[nowIndex].name }}</h1>
-            <p>{{ titList[nowIndex].describe }}</p>
-          </div>
-          <div class="content" v-if="!list.length">
-            <p class="no-data">没有文章哦~ㄟ( ▔, ▔ )ㄏ</p>
-          </div>
-          <div class="art-list" v-else>
-            <div
-              class="article-cons"
-              v-for="(item, index) in list"
-              :key="index"
-            >
-              <div class="art-con">
-                <div class="tit" @click="enterDetail(item)">
-                  {{ item.tit_art }}
+  <div class="blog">
+    <div class="ignore">
+      <app-header></app-header>
+      <div class="blog-con">
+        <nav-list ref="nav-list"
+                  :nowItem.sync="nowItem"
+                  :nowIndex.sync="nowIndex"
+                  @changeTab="changeTab()"></nav-list>
+        <div class="right-con">
+          <div class="content-area">
+            <div class="title"
+                 v-if="nowIndex > 1 && nowIndex < 5">
+              <h1>分类：{{ titList[nowIndex].name }}</h1>
+              <p>{{ titList[nowIndex].describe }}</p>
+            </div>
+            <div class="title"
+                 v-if="nowIndex == 1">
+              <h1>{{ titList[nowIndex].name }}</h1>
+              <p>{{ titList[nowIndex].describe }}</p>
+            </div>
+            <div class="content"
+                 v-if="!list.length">
+              <p class="no-data">没有文章哦~ㄟ( ▔, ▔ )ㄏ</p>
+            </div>
+            <div class="art-list"
+                 v-else>
+              <div class="article-cons"
+                   v-for="(item, index) in list"
+                   :key="index">
+                <div class="art-con">
+                  <div class="tit"
+                       @click="enterDetail(item)">
+                    {{ item.tit_art }}
+                  </div>
+                  <div class="article">{{ item.con_txt_art }}</div>
+                  <div class="enter"
+                       @click="enterDetail(item)">继续阅读 →</div>
                 </div>
-                <div class="article">{{ item.con_txt_art }}</div>
-                <div class="enter" @click="enterDetail(item)">继续阅读 →</div>
+                <div class="art-bottom">
+                  <Icon type="ios-calendar-outline"
+                        size="20" />
+                  <span class="time">{{ item.time_art }}</span>
+                  <Icon type="ios-folder-outline"
+                        size="20" />
+                  <span class="type">{{ item.type_art | typeFilter }}</span>
+                  <Icon type="ios-eye"
+                        size="20" />
+                  <span class="time">{{ item.read_art }}</span>
+                </div>
               </div>
-              <div class="art-bottom">
-                <Icon type="ios-calendar-outline" size="20" />
-                <span class="time">{{ item.time_art }}</span>
-                <Icon type="ios-folder-outline" size="20" />
-                <span class="type">{{ item.type_art | typeFilter }}</span>
-                <Icon type="ios-eye" size="20" />
-                <span class="time">{{ item.read_art }}</span>
+            </div>
+            <div class="nav">
+              <div class="nav-list">
+                <Page @on-change="handlePage"
+                      :total="total"
+                      :current.sync="pageNum"
+                      :page-size="pageSize" />
               </div>
             </div>
           </div>
-          <div class="nav">
-            <div class="nav-list">
-              <Page
-                @on-change="handlePage"
-                :total="total"
-                :page-size="pageSize"
-              />
-            </div>
-          </div>
+          <app-footer></app-footer>
+          <loadings :loadShows="loadShows"></loadings>
         </div>
-        <app-footer></app-footer>
-        <loadings :loadShows="loadShows"></loadings>
       </div>
+      <loading :loadShow="loadShow"></loading>
     </div>
-    <loading :loadShow="loadShow"></loading>
+    <div class="i-mobile">
+      <app-header @oepnMask="oepnMask"></app-header>
+      <div class="blog-con">
+        <nav-list ref="nav-list"
+                  :isOpen.sync="isOpen"
+                  :nowItem.sync="nowItem"
+                  :nowIndex.sync="nowIndex"
+                  @changeTab="changeTab()"
+                  @closeMask="closeMask()"></nav-list>
+        <div class="right-con">
+          <div class="content-area">
+            <div class="title"
+                 v-if="nowIndex > 1 && nowIndex < 5">
+              <h1>分类：{{ titList[nowIndex].name }}</h1>
+              <p>{{ titList[nowIndex].describe }}</p>
+            </div>
+            <div class="title"
+                 v-if="nowIndex == 1">
+              <h1>{{ titList[nowIndex].name }}</h1>
+              <p>{{ titList[nowIndex].describe }}</p>
+            </div>
+            <div class="content"
+                 v-if="!list.length">
+              <p class="no-data">没有文章哦~ㄟ( ▔, ▔ )ㄏ</p>
+            </div>
+            <div class="art-list"
+                 v-else>
+              <div class="article-cons"
+                   v-for="(item, index) in list"
+                   :key="index">
+                <div class="art-con">
+                  <div class="tit"
+                       @click="enterDetail(item)">
+                    {{ item.tit_art }}
+                  </div>
+                  <div class="article">{{ item.con_txt_art }}</div>
+                  <div class="enter"
+                       @click="enterDetail(item)">继续阅读 →</div>
+                </div>
+                <div class="art-bottom">
+                  <Icon type="ios-calendar-outline"
+                        size="20" />
+                  <span class="time">{{ item.time_art }}</span>
+                  <Icon type="ios-folder-outline"
+                        size="20" />
+                  <span class="type">{{ item.type_art | typeFilter }}</span>
+                  <Icon type="ios-eye"
+                        size="20" />
+                  <span class="time">{{ item.read_art }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="nav">
+              <div class="nav-list">
+                <Page @on-change="handlePage"
+                      :total="total"
+                      :current.sync="pageNum"
+                      size="small"
+                      :page-size="pageSize" />
+              </div>
+            </div>
+          </div>
+          <app-footer></app-footer>
+          <loadings :loadShows="loadShows"></loadings>
+        </div>
+      </div>
+      <loading :loadShow="loadShow"></loading>
+    </div>
   </div>
 </template>
 
@@ -74,7 +148,7 @@ export default {
     "app-header": header,
     "app-footer": footer
   },
-  data() {
+  data () {
     return {
       loadShow: true,
       loadShows: true,
@@ -114,11 +188,12 @@ export default {
       total: 0,
       pageList: 0,
       type_art: "",
-      status_art: 1
+      status_art: 1,
+      isOpen: false
     };
   },
   filters: {
-    typeFilter(status) {
+    typeFilter (status) {
       const statusMap = {
         "1": "我的日常",
         "2": "学习与积累",
@@ -127,7 +202,7 @@ export default {
       return statusMap[status];
     }
   },
-  created() {
+  created () {
     if (this.$route.query.type_art) {
       this.type_art = this.$route.query.type_art;
       if (
@@ -149,9 +224,9 @@ export default {
     }
   },
   methods: {
-    changeTab() {
+    changeTab () {
       if (this.nowItem.link === "blog") {
-        this.pageNum = 1;
+        this.pageNum = 1
         this.type_art = this.nowItem.type;
         if (
           this.type_art == "" ||
@@ -172,14 +247,14 @@ export default {
         this.$router.push({ name: this.nowItem.link });
       }
     },
-    enterDetail(item) {
+    enterDetail (item) {
       this.$router.push(`/detail?id=${item.id_art}`);
     },
-    handlePage(size) {
+    handlePage (size) {
       this.pageNum = size;
       this.getArtList();
     },
-    getArtList() {
+    getArtList () {
       this.loadShows = true;
       this.list = [];
       let obj = {
@@ -204,17 +279,23 @@ export default {
           this.loadShows = false;
         });
     },
-    preBtn() {
+    preBtn () {
       if (this.pageNum > 1) {
         this.pageNum--;
         this.getArtList();
       }
     },
-    nextBtn() {
+    nextBtn () {
       if (this.pageNum < this.pageList) {
         this.pageNum++;
         this.getArtList();
       }
+    },
+    oepnMask () {
+      this.isOpen = true
+    },
+    closeMask () {
+      this.isOpen = false
     }
   }
 };
@@ -222,169 +303,317 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/common.scss";
-.blog.ignore {
-  min-height: 100vh;
-  padding-bottom: 20px;
-  .blog-con {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 880px;
-    margin: auto;
-    .right-con {
-      position: relative;
-      width: 665px;
-    }
-    .content-area {
-      .title {
-        margin-bottom: 20px;
-        padding: 1vw;
-        border-radius: 5px;
-        border-left: 10px solid #333;
-        background: #fff;
-        box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
-        h1 {
-          margin-bottom: 5px;
-          color: #000;
-          font-size: 18px;
-        }
-        p {
-          color: rgba(51, 51, 51, 0.7);
-          font-size: 12px;
-        }
-      }
-      .content {
+.blog {
+  .ignore {
+    min-height: 100vh;
+    .blog-con {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 880px;
+      margin: auto;
+      .right-con {
         position: relative;
-        min-height: 20vw;
-        padding: 15px;
-        border-radius: 5px;
-        background: #fff;
-        box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
-        .no-data {
-          width: 100%;
-          height: 20vw;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 20px;
-        }
+        width: 665px;
       }
-      .art-list {
-        .article-cons {
+      .content-area {
+        .title {
           margin-bottom: 20px;
+          padding: 1vw;
+          border-radius: 5px;
+          border-left: 10px solid #333;
+          background: #fff;
+          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+          h1 {
+            margin-bottom: 5px;
+            color: #000;
+            font-size: 18px;
+          }
+          p {
+            color: rgba(51, 51, 51, 0.7);
+            font-size: 12px;
+          }
+        }
+        .content {
+          position: relative;
+          min-height: 20vw;
+          padding: 15px;
           border-radius: 5px;
           background: #fff;
           box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
-          .art-con {
-            padding: 2vw;
-            .tit {
-              margin-bottom: 20px;
-              color: #000;
-              font-size: 24px;
-              cursor: pointer;
-              @include ell();
-              text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-            }
-            .tit:hover {
-              opacity: 0.8;
-            }
-            .article {
-              margin-bottom: 20px;
-              color: #403f3f;
-              font-size: 16px;
-              @include multi(4);
-            }
-            .enter {
-              width: 86px;
-              font-size: 16px;
-              text-align: center;
-              color: #333;
-              border-bottom: 1px solid #333;
-              cursor: pointer;
-            }
-            .enter:hover {
-              opacity: 0.8;
-            }
-          }
-          .art-bottom {
+          .no-data {
+            width: 100%;
+            height: 20vw;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 1vw 2vw;
-            border-radius: 0 0 5px 5px;
-            background-color: #f7f7f7;
-            span {
-              position: relative;
-              margin: 0 20px 0 5px;
-              color: #333;
-              font-size: 14px;
+            justify-content: center;
+            font-size: 20px;
+          }
+        }
+        .art-list {
+          .article-cons {
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+            .art-con {
+              padding: 2vw;
+              .tit {
+                margin-bottom: 20px;
+                color: #000;
+                font-size: 24px;
+                cursor: pointer;
+                @include ell();
+                text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+              }
+              .tit:hover {
+                opacity: 0.8;
+              }
+              .article {
+                margin-bottom: 20px;
+                color: #403f3f;
+                font-size: 16px;
+                @include multi(4);
+              }
+              .enter {
+                width: 86px;
+                font-size: 16px;
+                text-align: center;
+                color: #333;
+                border-bottom: 1px solid #333;
+                cursor: pointer;
+              }
+              .enter:hover {
+                opacity: 0.8;
+              }
+            }
+            .art-bottom {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 1vw 2vw;
+              border-radius: 0 0 5px 5px;
+              background-color: #f7f7f7;
+              span {
+                position: relative;
+                margin: 0 20px 0 5px;
+                color: #333;
+                font-size: 14px;
+              }
             }
           }
         }
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 20px;
+          border-radius: 5px;
+          background: #fff;
+          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+        }
       }
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        border-radius: 5px;
-        background: #fff;
-        box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+    }
+  }
+  .i-mobile {
+    display: none;
+    min-height: 100vh;
+    .blog-con {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin: auto;
+      .right-con {
+        position: relative;
+        width: 100%;
       }
+      .content-area {
+        .title {
+          margin-bottom: 20px;
+          padding: 2vw;
+          border-radius: 5px;
+          border-left: 20px solid #333;
+          background: #fff;
+          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+          h1 {
+            margin-bottom: 10px;
+            color: #000;
+            font-size: 36px;
+          }
+          p {
+            color: rgba(51, 51, 51, 0.7);
+            font-size: 24px;
+          }
+        }
+        .content {
+          position: relative;
+          min-height: 20vw;
+          padding: 30px;
+          border-radius: 5px;
+          background: #fff;
+          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+          .no-data {
+            width: 100%;
+            height: 20vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+          }
+        }
+        .art-list {
+          .article-cons {
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+            .art-con {
+              padding: 4vw;
+              .tit {
+                margin-bottom: 20px;
+                color: #000;
+                font-size: 48px;
+                cursor: pointer;
+                @include ell();
+                text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+              }
+              .tit:hover {
+                opacity: 0.8;
+              }
+              .article {
+                margin-bottom: 20px;
+                color: #403f3f;
+                font-size: 32px;
+                @include multi(4);
+              }
+              .enter {
+                width: 172px;
+                font-size: 32px;
+                text-align: center;
+                color: #333;
+                border-bottom: 1px solid #333;
+                cursor: pointer;
+              }
+              .enter:hover {
+                opacity: 0.8;
+              }
+            }
+            .art-bottom {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 2vw 4vw;
+              border-radius: 0 0 5px 5px;
+              background-color: #f7f7f7;
+              span {
+                position: relative;
+                margin: 0 20px 0 5px;
+                color: #333;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 40px;
+          border-radius: 5px;
+          background: #fff;
+          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .ignore {
+      display: none;
+    }
+    .i-mobile {
+      display: block;
     }
   }
 }
 </style>
 <style lang="scss">
-.nav {
-  position: relative;
-  .nav-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 44px;
-    .ivu-page-prev {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 44px;
+.ignore {
+  .nav {
+    position: relative;
+    .nav-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       height: 44px;
-      border-radius: 5px 0 0 5px;
-      border: none;
-      background: #333 !important;
-      .ivu-icon {
-        font-size: 20px;
-        line-height: 44px;
+      .ivu-page-prev {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 5px 0 0 5px;
+        border: none;
+        background: #333 !important;
+        .ivu-icon {
+          font-size: 20px;
+          line-height: 44px;
+        }
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-      a {
-        color: #bdbdbd;
+      .ivu-page-next {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 0 5px 5px 0;
+        border: none;
+        background: #333 !important;
+        .ivu-icon {
+          font-size: 20px;
+          line-height: 44px;
+        }
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-      a:hover {
-        color: #bdbdbd;
+      .ivu-page-item {
+        border: none;
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #000;
+        }
       }
-    }
-    .ivu-page-next {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 44px;
-      height: 44px;
-      border-radius: 0 5px 5px 0;
-      border: none;
-      background: #333 !important;
-      .ivu-icon {
-        font-size: 20px;
-        line-height: 44px;
+      .ivu-page-item-active {
+        border: none;
+        a {
+          color: #000;
+        }
+        a:hover {
+          color: #000;
+        }
       }
-      a {
-        color: #bdbdbd;
+      .ivu-page-disabled {
+        cursor: not-allowed;
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-      a:hover {
-        color: #bdbdbd;
-      }
-    }
-    .ivu-page-item {
-      border: none;
       a {
         color: #bdbdbd;
       }
@@ -392,29 +621,94 @@ export default {
         color: #000;
       }
     }
-    .ivu-page-item-active {
-      border: none;
-      a {
-        color: #000;
+  }
+}
+.i-mobile {
+  .nav {
+    position: relative;
+    .nav-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 88px;
+      .ivu-page {
+        display: flex;
       }
-      a:hover {
-        color: #000;
+      .ivu-page-prev {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 88px;
+        height: 88px;
+        border-radius: 5px 0 0 5px;
+        border: none;
+        background: #333 !important;
+        .ivu-icon {
+          font-size: 40px;
+          line-height: 88px;
+        }
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
       }
-    }
-    .ivu-page-disabled {
-      cursor: not-allowed;
+      .ivu-page-next {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 88px;
+        height: 88px;
+        border-radius: 0 5px 5px 0;
+        border: none;
+        background: #333 !important;
+        .ivu-icon {
+          font-size: 40px;
+          line-height: 88px;
+        }
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
+      }
+      .ivu-page-item {
+        border: none;
+        font-size: 30px;
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #000;
+        }
+      }
+      .ivu-page-item-active {
+        border: none;
+        font-size: 30px;
+        a {
+          color: #000;
+        }
+        a:hover {
+          color: #000;
+        }
+      }
+      .ivu-page-disabled {
+        cursor: not-allowed;
+        a {
+          color: #bdbdbd;
+        }
+        a:hover {
+          color: #bdbdbd;
+        }
+      }
       a {
         color: #bdbdbd;
       }
       a:hover {
-        color: #bdbdbd;
+        color: #000;
       }
-    }
-    a {
-      color: #bdbdbd;
-    }
-    a:hover {
-      color: #000;
     }
   }
 }

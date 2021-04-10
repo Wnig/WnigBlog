@@ -1,14 +1,31 @@
 <template>
-  <div class="loading-container ignore" v-if="loadShows">
-    <div class="loading">
-      <div class="loading-text">
-        <span class="loading-text-words">L</span>
-        <span class="loading-text-words">O</span>
-        <span class="loading-text-words">A</span>
-        <span class="loading-text-words">D</span>
-        <span class="loading-text-words">I</span>
-        <span class="loading-text-words">N</span>
-        <span class="loading-text-words">G</span>
+  <div>
+    <div class="loading-container ignore"
+         v-if="loadShows">
+      <div class="loading">
+        <div class="loading-text">
+          <span class="loading-text-words">L</span>
+          <span class="loading-text-words">O</span>
+          <span class="loading-text-words">A</span>
+          <span class="loading-text-words">D</span>
+          <span class="loading-text-words">I</span>
+          <span class="loading-text-words">N</span>
+          <span class="loading-text-words">G</span>
+        </div>
+      </div>
+    </div>
+    <div class="loading-container i-mobile"
+         v-if="loadShows">
+      <div class="loading">
+        <div class="loading-text">
+          <span class="loading-text-words">L</span>
+          <span class="loading-text-words">O</span>
+          <span class="loading-text-words">A</span>
+          <span class="loading-text-words">D</span>
+          <span class="loading-text-words">I</span>
+          <span class="loading-text-words">N</span>
+          <span class="loading-text-words">G</span>
+        </div>
       </div>
     </div>
   </div>
@@ -32,7 +49,7 @@ export default {
   },
   methods: {},
   watch: {
-    loadShows: function(val) {
+    loadShows: function (val) {
       if (val) {
         setTimeout(() => {
           this.$parent.loadShows = false;
@@ -133,6 +150,14 @@ export default {
   100% {
     -webkit-filter: blur(4px);
     filter: blur(4px);
+  }
+}
+@media screen and (max-width: 750px) {
+  .ignore {
+    display: none;
+  }
+  .i-mobile {
+    display: block;
   }
 }
 </style>

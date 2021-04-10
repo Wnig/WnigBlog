@@ -1,76 +1,91 @@
 <template>
-  <div id="app" class="ignore">
+  <div id="app">
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" :key="$route.fullpath" />
+      <router-view v-if="$route.meta.keepAlive"
+                   :key="$route.fullpath" />
     </keep-alive>
 
-    <router-view
-      v-if="!$route.meta.keepAlive"
-      :key="$route.fullpath"
-    ></router-view>
-    <div class="weather" v-if="location">
-      <div class="tips">
-        <span class="name">
-          <Icon type="ios-pin-outline" size="16" />{{ weather.city }}</span
-        >
-        <div class="location">
-          <p>
-            <span class="date">
-              <Icon type="md-calendar" size="16" />
-              {{ weather.date }}</span
-            >
-            <span class="week">{{ weather.week }}</span>
-          </p>
-          <p>
-            <span class="tems">
-              <Icon type="ios-thermometer-outline" size="12" />{{
-                weather.tem1
-              }}°~{{ weather.tem2 }}°</span
-            >
-            <span class="tems">{{ weather.win }}{{ weather.win_speed }}</span>
-          </p>
+    <router-view v-if="!$route.meta.keepAlive"
+                 :key="$route.fullpath"></router-view>
+    <div class="ignore">
+      <div class="weather"
+           v-if="location">
+        <div class="tips">
+          <span class="name">
+            <Icon type="ios-pin-outline"
+                  size="16" />{{ weather.city }}</span>
+          <div class="location">
+            <p>
+              <span class="date">
+                <Icon type="md-calendar"
+                      size="16" />
+                {{ weather.date }}</span>
+              <span class="week">{{ weather.week }}</span>
+            </p>
+            <p>
+              <span class="tems">
+                <Icon type="ios-thermometer-outline"
+                      size="12" />{{
+                  weather.tem1
+                }}°~{{ weather.tem2 }}°</span>
+              <span class="tems">{{ weather.win }}{{ weather.win_speed }}</span>
+            </p>
+          </div>
+          <div class="weather-con">
+            <span class="tem">{{ weather.tem }}°</span>
+            <span class="wea">{{ weather.wea }}</span>
+            <i class="iconfont"
+               v-if="weather.wea_img == item.type"
+               v-for="(item, index) in weaIconList"
+               :key="index"
+               :class="item.class"></i>
+            <span class="air">空气质量 : {{ weather.air }}</span>
+          </div>
+          <p>更新时间 : {{ weather.update_time }}</p>
         </div>
-        <div class="weather-con">
-          <span class="tem">{{ weather.tem }}°</span>
-          <span class="wea">{{ weather.wea }}</span>
-          <i
-            class="iconfont"
-            v-if="weather.wea_img == item.type"
-            v-for="(item, index) in weaIconList"
-            :key="index"
-            :class="item.class"
-          ></i>
-          <span class="air">空气质量 : {{ weather.air }}</span>
-        </div>
-        <p>更新时间 : {{ weather.update_time }}</p>
       </div>
+      <div class="music"
+           :class="{ out: isOut }">
+        <div class="img">
+          <img :class="{ on: isPlay }"
+               :src="musicList[nowIndex].imgurl"
+               alt="" />
+        </div>
+        <div class="music-info">
+          <p>{{ musicList[nowIndex].name }}</p>
+          <p>{{ musicList[nowIndex].singer }}</p>
+          <div class="control-btn">
+            <audio id="audio"
+                   :src="musicList[nowIndex].url"
+                   preload="auto"
+                   autoplay></audio>
+            <i class="iconfont icon-icon-1"
+               @click="pre"></i>
+            <i class="iconfont icon-icon-2"
+               @click="stopBtn"
+               v-if="isPlay"></i>
+            <i class="iconfont icon-icon-6"
+               @click="playBtn"
+               v-else></i>
+            <i class="iconfont icon-icon-"
+               @click="next"></i>
+          </div>
+        </div>
+        <div class="right-btn"
+             @click="clickMusic">
+          <Icon v-if="isOut"
+                type="ios-arrow-forward"
+                size="20" />
+          <Icon v-else
+                type="ios-arrow-back"
+                size="20" />
+        </div>
+      </div>
+      <loading :loadShow="loadShow"></loading>
     </div>
-    <div class="music" :class="{ out: isOut }">
-      <div class="img">
-        <img :class="{ on: isPlay }" :src="musicList[nowIndex].imgurl" alt="" />
-      </div>
-      <div class="music-info">
-        <p>{{ musicList[nowIndex].name }}</p>
-        <p>{{ musicList[nowIndex].singer }}</p>
-        <div class="control-btn">
-          <audio
-            id="audio"
-            :src="musicList[nowIndex].url"
-            preload="auto"
-            autoplay
-          ></audio>
-          <i class="iconfont icon-icon-1" @click="pre"></i>
-          <i class="iconfont icon-icon-2" @click="stopBtn" v-if="isPlay"></i>
-          <i class="iconfont icon-icon-6" @click="playBtn" v-else></i>
-          <i class="iconfont icon-icon-" @click="next"></i>
-        </div>
-      </div>
-      <div class="right-btn" @click="clickMusic">
-        <Icon v-if="isOut" type="ios-arrow-forward" size="20" />
-        <Icon v-else type="ios-arrow-back" size="20" />
-      </div>
+    <div class="i-mobile">
+
     </div>
-    <loading :loadShow="loadShow"></loading>
   </div>
 </template>
 
@@ -79,7 +94,7 @@ import jsonp from "jsonp";
 import { counter } from "@/api/http.js";
 export default {
   name: "App",
-  data() {
+  data () {
     return {
       loadShow: true,
       isPlay: false,
@@ -178,20 +193,20 @@ export default {
       ]
     };
   },
-  created() {
+  created () {
     var hiddenProperty =
       "hidden" in document
         ? "hidden"
         : "webkitHidden" in document
-        ? "webkitHidden"
-        : "mozHidden" in document
-        ? "mozHidden"
-        : null;
+          ? "webkitHidden"
+          : "mozHidden" in document
+            ? "mozHidden"
+            : null;
     var visibilityChangeEvent = hiddenProperty.replace(
       /hidden/i,
       "visibilitychange"
     );
-    var onVisibilityChange = function() {
+    var onVisibilityChange = function () {
       if (!document[hiddenProperty]) {
         document.title = "I'm Wnig. - 我最害怕孤独，无法生存。";
       } else {
@@ -201,16 +216,16 @@ export default {
     document.addEventListener(visibilityChangeEvent, onVisibilityChange);
     this.getCounter();
   },
-  mounted() {
+  mounted () {
     this.getLocation();
     var audio = document.querySelector("#audio");
     let that = this;
-    audio.addEventListener("loadeddata", function() {
+    audio.addEventListener("loadeddata", function () {
       audio.paused ? (that.isPlay = false) : (that.isPlay = true);
     });
     audio.addEventListener(
       "ended",
-      function() {
+      function () {
         if (that.nowIndex == that.musicList.length - 1) {
           that.nowIndex = 0;
         } else {
@@ -223,31 +238,31 @@ export default {
   },
   methods: {
     // 统计访问人数
-    getCounter() {
+    getCounter () {
       counter()
-        .then(res => {})
+        .then(res => { })
         .finally(() => {
           this.loadShow = false;
         });
     },
-    playBtn() {
+    playBtn () {
       var audio = document.querySelector("#audio");
       var that = this;
       if (!this.isPlay) {
-        audio.addEventListener("canplay", function() {
+        audio.addEventListener("canplay", function () {
           audio.play();
           that.isPlay = true;
         });
       }
     },
-    stopBtn() {
+    stopBtn () {
       var audio = document.querySelector("#audio");
       if (this.isPlay) {
         audio.pause();
         this.isPlay = false;
       }
     },
-    pre() {
+    pre () {
       if (this.nowIndex == 0) {
         return;
       } else {
@@ -255,7 +270,7 @@ export default {
       }
       this.playBtn();
     },
-    next() {
+    next () {
       if (this.nowIndex == this.musicList.length - 1) {
         return;
       } else {
@@ -263,10 +278,10 @@ export default {
         this.playBtn();
       }
     },
-    clickMusic() {
+    clickMusic () {
       this.isOut = !this.isOut;
     },
-    getLocation() {
+    getLocation () {
       var data = {
         key: "FDRBZ-2T7RI-J5MGG-5OOCF-7D7KQ-N4FDM"
       };
@@ -281,7 +296,7 @@ export default {
           console.log(error);
         });
     },
-    getWeather() {
+    getWeather () {
       // 获取天气
       var data = {
         version: "v61",
@@ -517,6 +532,20 @@ body {
     to {
       -webkit-transform: rotate(360deg);
     }
+  }
+}
+.i-mobile {
+  display: none;
+  img {
+    content: normal !important;
+  }
+}
+@media screen and (max-width: 750px) {
+  .ignore {
+    display: none;
+  }
+  .i-mobile {
+    display: block;
   }
 }
 </style>

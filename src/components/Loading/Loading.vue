@@ -1,10 +1,22 @@
 <template>
-  <div class="loading-container ignore" v-if="loadShow">
-    <div class="container animation-6">
-      <div class="shape shape1"></div>
-      <div class="shape shape2"></div>
-      <div class="shape shape3"></div>
-      <div class="shape shape4"></div>
+  <div>
+    <div class="loading-container ignore"
+         v-if="loadShow">
+      <div class="container animation-6">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+      </div>
+    </div>
+    <div class="loading-container i-mobile"
+         v-if="loadShow">
+      <div class="container animation-6">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +39,7 @@ export default {
   },
   methods: {},
   watch: {
-    loadShow: function(val) {
+    loadShow: function (val) {
       if (val) {
         setTimeout(() => {
           this.$parent.loadShow = false;
@@ -38,7 +50,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .loading-container.ignore {
   position: fixed;
   left: 0;
@@ -52,25 +64,27 @@ export default {
   background: #fff;
   z-index: 99999;
 }
-.container {
-  width: 30px;
-  height: 30px;
-  position: relative;
+.ignore {
+  .container {
+    width: 30px;
+    height: 30px;
+    position: relative;
+  }
+  .container.animation-6 .shape {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+  .container .shape {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 1px;
+  }
 }
 .container.animation-6 {
   -webkit-animation: rotation 1s infinite;
   animation: rotation 1s infinite;
-}
-.container.animation-6 .shape {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-}
-.container .shape {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 1px;
 }
 .container .shape.shape1 {
   left: 0;
@@ -89,6 +103,29 @@ export default {
   right: 0;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.loading-container.i-mobile {
+  display: none;
+}
+.i-mobile {
+  .container {
+    width: 60px;
+    height: 60px;
+    position: relative;
+  }
+  .container.animation-6 .shape {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+  }
+  .container .shape {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 1px;
+  }
+}
+
 @-webkit-keyframes rotation {
   from {
     -webkit-transform: rotate(0deg);
@@ -276,6 +313,15 @@ export default {
   75% {
     -webkit-transform: translate(-18px, 0);
     transform: translate(-18px, 0);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .ignore {
+    display: none;
+  }
+  .i-mobile {
+    display: block;
   }
 }
 </style>
