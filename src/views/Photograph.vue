@@ -279,22 +279,23 @@ export default {
         position: relative;
         width: 665px;
       }
+
       .article-cons {
         .art-con {
           .title {
             margin-bottom: 20px;
             padding: 1vw;
-            border-radius: 5px;
-            border-left: 10px solid #333;
-            background: #fff;
-            box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            border-left: 10px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.5);
             h1 {
               margin-bottom: 5px;
-              color: #000;
+              color: #fff;
               font-size: 18px;
             }
             p {
-              color: rgba(51, 51, 51, 0.7);
+              color: #fff;
               font-size: 12px;
             }
           }
@@ -306,7 +307,7 @@ export default {
               box-sizing: border-box;
               margin: 0 0px 10px 0px;
               padding: 10px;
-              background: #fff;
+              background: rgba(255, 255, 255, 0.2);
               border-radius: 5px;
               box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
               .item-content {
@@ -321,11 +322,15 @@ export default {
                 .describe {
                   width: 100%;
                   p {
+                    color: #fff;
                     margin-bottom: 5px;
                     text-align: left;
+                    font-size: 14px;
                   }
                   .time {
+                    color: #fff;
                     text-align: right;
+                    font-size: 14px;
                   }
                 }
               }
@@ -352,7 +357,7 @@ export default {
         justify-content: center;
         margin-top: 20px;
         border-radius: 5px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
       }
     }
@@ -397,6 +402,7 @@ export default {
     }
   }
   .i-mobile {
+    display: none;
     .blog-con {
       display: flex;
       align-items: flex-start;
@@ -480,7 +486,7 @@ export default {
         justify-content: center;
         margin-top: 20px;
         border-radius: 5px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
       }
     }
@@ -552,16 +558,16 @@ export default {
         height: 44px;
         border-radius: 5px 0 0 5px;
         border: none;
-        background: #333 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         .ivu-icon {
           font-size: 20px;
           line-height: 44px;
         }
         a {
-          color: #bdbdbd;
+          color: #fff;
         }
         a:hover {
-          color: #bdbdbd;
+          color: #fff;
         }
       }
       .ivu-page-next {
@@ -572,16 +578,16 @@ export default {
         height: 44px;
         border-radius: 0 5px 5px 0;
         border: none;
-        background: #333 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         .ivu-icon {
           font-size: 20px;
           line-height: 44px;
         }
         a {
-          color: #bdbdbd;
+          color: #fff;
         }
         a:hover {
-          color: #bdbdbd;
+          color:#fff;
         }
       }
       .ivu-page-item {
@@ -596,10 +602,10 @@ export default {
       .ivu-page-item-active {
         border: none;
         a {
-          color: #000;
+          color: rgba(255, 255, 255, 0.6);
         }
         a:hover {
-          color: #000;
+          color: rgba(255, 255, 255, 0.5);
         }
       }
       .ivu-page-disabled {

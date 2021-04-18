@@ -194,13 +194,13 @@ export default {
       }
       .article-cons {
         border-radius: 5px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
         .art-con {
           padding: 20px;
           .tit {
             margin-bottom: 20px;
-            color: #000;
+            color: #fff;
             font-size: 24px;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
           }
@@ -209,7 +209,7 @@ export default {
             .year {
               padding-left: 5px;
               margin: 20px auto 5px;
-              color: #403f3f;
+              color: #fff;
               font-size: 20px;
               font-style: italic;
             }
@@ -225,12 +225,12 @@ export default {
                 font-size: 14px;
                 cursor: pointer;
                 &:hover {
-                  color: #403f3f;
+                  color: #fff;
                   opacity: 0.8;
                 }
               }
               span {
-                color: #403f3f;
+                color: #fafafa;
                 font-size: 14px;
                 font-style: italic;
               }

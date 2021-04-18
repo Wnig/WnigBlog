@@ -320,17 +320,17 @@ export default {
         .title {
           margin-bottom: 20px;
           padding: 1vw;
-          border-radius: 5px;
-          border-left: 10px solid #333;
-          background: #fff;
-          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+          border-radius: 4px;
+          border-left: 10px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.5);
           h1 {
             margin-bottom: 5px;
-            color: #000;
+            color: #fff;
             font-size: 18px;
           }
           p {
-            color: rgba(51, 51, 51, 0.7);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 12px;
           }
         }
@@ -353,14 +353,14 @@ export default {
         .art-list {
           .article-cons {
             margin-bottom: 20px;
-            border-radius: 5px;
-            background: #fff;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
             .art-con {
               padding: 2vw;
               .tit {
                 margin-bottom: 20px;
-                color: #000;
+                color: #fff;
                 font-size: 24px;
                 cursor: pointer;
                 @include ell();
@@ -371,7 +371,7 @@ export default {
               }
               .article {
                 margin-bottom: 20px;
-                color: #403f3f;
+                color: #fff;
                 font-size: 16px;
                 @include multi(4);
               }
@@ -379,8 +379,8 @@ export default {
                 width: 86px;
                 font-size: 16px;
                 text-align: center;
-                color: #333;
-                border-bottom: 1px solid #333;
+                color: #fff;
+                border-bottom: 1px solid #fff;
                 cursor: pointer;
               }
               .enter:hover {
@@ -392,12 +392,15 @@ export default {
               align-items: center;
               justify-content: flex-start;
               padding: 1vw 2vw;
-              border-radius: 0 0 5px 5px;
-              background-color: #f7f7f7;
+              border-radius: 0 0 4px 4px;
+              background: rgba(255, 255, 255, 0.1);
+              .ivu-icon {
+                color: #fff;
+              }
               span {
                 position: relative;
                 margin: 0 20px 0 5px;
-                color: #333;
+                color: #fff;
                 font-size: 14px;
               }
             }
@@ -409,7 +412,7 @@ export default {
           justify-content: center;
           margin-top: 20px;
           border-radius: 5px;
-          background: #fff;
+          background: rgba(255, 255, 255, 0.2);
           box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
         }
       }
@@ -521,7 +524,7 @@ export default {
           justify-content: center;
           margin-top: 40px;
           border-radius: 5px;
-          background: #fff;
+          background: rgba(255, 255, 255, 0.2);
           box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
         }
       }
@@ -555,7 +558,7 @@ export default {
         height: 44px;
         border-radius: 5px 0 0 5px;
         border: none;
-        background: #333 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         .ivu-icon {
           font-size: 20px;
           line-height: 44px;
@@ -575,7 +578,7 @@ export default {
         height: 44px;
         border-radius: 0 5px 5px 0;
         border: none;
-        background: #333 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         .ivu-icon {
           font-size: 20px;
           line-height: 44px;
@@ -588,21 +591,22 @@ export default {
         }
       }
       .ivu-page-item {
+        background: rgba(255, 255, 255, 0.2);
         border: none;
         a {
-          color: #bdbdbd;
+          color: #fff;
         }
         a:hover {
-          color: #000;
+          color: #fff;
         }
       }
       .ivu-page-item-active {
         border: none;
         a {
-          color: #000;
+          color: rgba(255, 255, 255, 0.6);
         }
         a:hover {
-          color: #000;
+          color: rgba(255, 255, 255, 0.5);
         }
       }
       .ivu-page-disabled {

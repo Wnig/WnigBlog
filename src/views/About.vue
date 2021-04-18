@@ -115,19 +115,19 @@ export default {
       }
       .article-cons {
         border-radius: 5px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.2);
         box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
         .art-con {
           padding: 20px;
           .tit {
             margin-bottom: 20px;
-            color: #000;
+            color: #fff;
             font-size: 24px;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
           }
           .article {
             margin-bottom: 50px;
-            color: #403f3f;
+            color: #fafafa;
             font-size: 16px;
           }
         }

@@ -166,8 +166,8 @@ export default {
     min-height: 50px;
     margin-right: 20px;
     padding: 20px;
-    background: #fff;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02), 0 4px 10px rgba(0, 0, 0, 0.06);
     z-index: 10;
     .myheader {
@@ -191,42 +191,42 @@ export default {
         position: relative;
         width: 100%;
         margin-bottom: 10px;
-        color: #333;
+        color: #fff;
         text-align: center;
         font-size: 30px;
         font-weight: 700;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      }
-      strong::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        width: 100%;
-        margin: auto;
-        background: rgba(0, 0, 0, 0.4);
-        transform: scaleX(1);
-        transition: all 0.2s ease-in;
-      }
-      strong:hover::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        width: 0;
-        margin: auto;
-        background: rgba(0, 0, 0, 0.4);
-        transform: scaleX(1);
-        transition: all 0.2s ease-in;
+        text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.4);
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          width: 100%;
+          margin: auto;
+          background: rgba(255, 255, 255, 1);
+          transform: scaleX(1);
+          transition: all 0.2s ease-in;
+        }
+        &:hover::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          width: 0;
+          margin: auto;
+          background: rgba(255, 255, 255, 1);
+          transform: scaleX(1);
+          transition: all 0.2s ease-in;
+        }
       }
       span {
         width: 100%;
         text-align: left;
-        color: #1a1a1a;
+        color: #fff;
         font-size: 14px;
       }
     }
@@ -251,7 +251,7 @@ export default {
       span {
         width: 100%;
         padding: 5px 20px;
-        color: #333;
+        color: #fff;
         text-align: center;
         font-size: 14px;
         @include ell();

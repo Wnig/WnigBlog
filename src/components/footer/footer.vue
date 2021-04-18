@@ -54,12 +54,13 @@ export default {
     margin-top: 20px;
     padding: 20px 50px;
     border-radius: 5px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
     p {
       line-height: 24px;
       text-align: center;
       font-size: 14px;
+      color: #fff;
       span {
         margin: 0 10px;
       }

@@ -315,13 +315,13 @@ export default {
         .title {
           margin-bottom: 20px;
           padding: 20px;
-          border-radius: 5px;
+          border-radius: 4px;
           border-left: 10px solid #333;
           background: #fff;
           box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
           h1 {
             margin-bottom: 5px;
-            color: #000;
+            color: #fff;
             font-size: 18px;
           }
           p {
@@ -348,19 +348,19 @@ export default {
         .art-list {
           .article-cons {
             border-radius: 5px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
             .art-con {
               padding: 20px;
               .tit {
                 margin-bottom: 20px;
-                color: #000;
+                color: #fff;
                 font-size: 24px;
                 text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
               }
               .article {
                 margin-bottom: 50px;
-                color: #403f3f;
+                color: #fafafa;
                 font-size: 16px;
               }
             }
@@ -369,12 +369,13 @@ export default {
               align-items: center;
               justify-content: flex-start;
               padding: 1vw 2vw;
-              border-radius: 0 0 5px 5px;
-              background-color: #f7f7f7;
+              border-radius: 0 0 4px 4px;
+              color: #fff;
+              background: rgba(255, 255, 255, 0.1);
               span {
                 position: relative;
                 margin: 0 20px 0 5px;
-                color: #333;
+                color: #fafafa;
                 font-size: 14px;
                 &.read {
                   margin-right: 0;
@@ -386,7 +387,7 @@ export default {
                 position: relative;
                 padding: 20px 0;
                 line-height: 30px;
-                color: #707070;
+                color: #fafafa;
                 font-size: 18px;
                 @include border-top-1px(#e6e6e6);
               }
@@ -405,6 +406,7 @@ export default {
                   justify-content: flex-start;
                   flex-direction: column;
                   width: 100%;
+                  color: #fff;
                   h3 {
                     font-weight: 700;
                     font-size: 18px;
@@ -414,9 +416,9 @@ export default {
                     span {
                       margin-left: 10px;
                       opacity: 0.8;
-                      color: #000;
+                      color: #fff;
                       font-size: 12px;
-                      border-bottom: 1px solid #333;
+                      border-bottom: 1px solid #fafafa;
                       cursor: pointer;
                     }
                     span:hover {
@@ -435,7 +437,7 @@ export default {
           width: 100%;
           margin-top: 20px;
           border-radius: 5px;
-          background: #fff;
+          background: rgba(255, 255, 255, 0.2);
           box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
           .pre {
             position: relative;
@@ -445,7 +447,7 @@ export default {
             width: 44px;
             height: 44px;
             border-radius: 5px 0 0 5px;
-            background: #333;
+            background: rgba(255, 255, 255, 0.1);
             .i-icon {
               color: #ccc;
             }
@@ -458,7 +460,7 @@ export default {
             width: 44px;
             height: 44px;
             border-radius: 0 5px 5px 0;
-            background: #333;
+            background: rgba(255, 255, 255, 0.1);
             .i-icon {
               color: #ccc;
             }
@@ -485,7 +487,7 @@ export default {
               text-align: right;
             }
             span:hover {
-              color: #000;
+              color: #fafafa;
               cursor: pointer;
             }
             .active {
@@ -714,6 +716,7 @@ pre {
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word;
+  color: #000;
 }
 pre code {
   display: block;

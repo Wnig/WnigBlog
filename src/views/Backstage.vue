@@ -392,9 +392,9 @@ export default {
     min-height: 450px;
     margin: 0 auto 20px;
     padding: 13px 10px;
-    border: 10px solid #333;
-    border-radius: 5px;
-    background: #fff;
+    border: 10px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
     .nav {
       position: relative;
@@ -411,7 +411,7 @@ export default {
         margin-bottom: 10px;
         padding: 5px 10px;
         width: 100%;
-        color: #333;
+        color: #fafafa;
         text-align: center;
         font-size: 14px;
         cursor: pointer;
@@ -427,7 +427,7 @@ export default {
           top: 0;
           width: 3px;
           height: 100%;
-          background: #333;
+          background: #fafafa;
           z-index: 99;
         }
       }
@@ -448,7 +448,7 @@ export default {
         align-items: flex-start;
         justify-content: flex-start;
         padding: 10px 20px;
-        color: #333;
+        color: #fafafa;
         text-align: center;
         font-size: 18px;
         font-weight: 700;
@@ -461,7 +461,8 @@ export default {
             padding: 0 12px;
             li {
               padding: 12px 0;
-              border-bottom: 1px solid #e8eaec;
+              border-bottom: 1px solid #fafafa;
+              color: #fafafa;
               .item {
                 display: flex;
                 align-items: center;
@@ -493,6 +494,7 @@ export default {
         align-items: center;
         height: 100px;
         text-align: center;
+        color: #fff;
       }
     }
     .search-list {
@@ -506,7 +508,7 @@ export default {
           position: relative;
           padding: 5px;
           margin-bottom: 10px;
-          color: #333;
+          color: #fafafa;
           line-height: 21px;
           font-size: 14px;
           font-weight: 700;

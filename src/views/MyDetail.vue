@@ -276,10 +276,11 @@ export default {
   .content {
     width: 880px;
     margin: 0 auto 20px;
-    border: 10px solid #333;
+    border: 10px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+    color: #fff;
     .article-con {
       position: relative;
       flex: 1;
@@ -291,7 +292,7 @@ export default {
         align-items: center;
         justify-content: flex-start;
         padding: 10px 3px;
-        background: #fcfcfc;
+        background: rgba(255, 255, 255, 0.2);
         @include border-bottom-1px(#e6e6e6);
         span {
           position: relative;
@@ -401,12 +402,13 @@ export default {
             span {
               margin-right: 10px;
               font-size: 12px;
-              color: #4d4d4d;
+              color: #fafafa;
             }
           }
         }
         .con {
           margin-bottom: 20px;
+          color: #fff;
         }
       }
     }
@@ -416,6 +418,7 @@ export default {
       align-items: center;
       height: 100px;
       text-align: center;
+      color: #fff;
     }
   }
   .footer {
@@ -431,6 +434,7 @@ export default {
   }
 }
 pre {
+  color: #000;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;

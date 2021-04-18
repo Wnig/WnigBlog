@@ -384,10 +384,11 @@ export default {
     min-height: 450px;
     margin: 0 auto 20px;
     padding: 13px 10px;
-    border: 10px solid #333;
+    border: 10px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+    color: #fff;
     .con {
       display: flex;
       align-items: flex-start;
@@ -412,7 +413,7 @@ export default {
         border: 1px solid transparent;
         border-radius: 4px;
         overflow: hidden;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.2);
         position: relative;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         margin-right: 4px;
@@ -423,7 +424,7 @@ export default {
       }
       .upload {
         position: relative;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.1);
         border: 1px dashed #dcdee2;
         border-radius: 4px;
         text-align: center;
@@ -466,6 +467,9 @@ export default {
   .footer {
     width: 880px;
     margin: auto;
+  }
+  .ivu-divider-horizontal {
+    color: #fff !important;
   }
 }
 </style>

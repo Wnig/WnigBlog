@@ -153,7 +153,7 @@ export default {
   .blog-con {
     width: 880px;
     margin: 0 auto 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
     .tit {
       display: flex;
@@ -161,12 +161,12 @@ export default {
       justify-content: flex-start;
       padding: 10px 5px;
       margin-bottom: 20px;
-      border-left: 10px solid #333;
+      border-left: 10px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
       border-radius: 5px;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.2);
       p {
-        color: #000;
+        color: #fff;
         font-size: 18px;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
         cursor: pointer;
@@ -177,6 +177,7 @@ export default {
         margin-right: 10px;
         font-size: 14px;
         font-weight: 600;
+        color: #fff;
         cursor: pointer;
       }
       strong::before {
@@ -189,6 +190,7 @@ export default {
         background: #ccc;
       }
       .ivu-icon {
+        color: #fff;
         cursor: pointer;
       }
     }
@@ -201,9 +203,10 @@ export default {
         box-sizing: border-box;
         margin: 0 0px 10px 0px;
         padding: 10px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 5px;
         box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+        color: #fafafa;
         .item-content {
           display: flex;
           align-items: center;
@@ -264,7 +267,7 @@ export default {
     width: 880px;
     margin: 20px auto 0;
     border-radius: 5px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
   }
   .footer {
@@ -290,7 +293,7 @@ export default {
         height: 44px;
         border-radius: 5px 0 0 5px;
         border: none;
-        background: #333 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         .ivu-icon {
           font-size: 20px;
           line-height: 44px;
@@ -310,7 +313,7 @@ export default {
         height: 44px;
         border-radius: 0 5px 5px 0;
         border: none;
-        background: #333 !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         .ivu-icon {
           font-size: 20px;
           line-height: 44px;
@@ -324,6 +327,7 @@ export default {
       }
       .ivu-page-item {
         border: none;
+        background: rgba(255, 255, 255, 0.2);
         a {
           color: #bdbdbd;
         }

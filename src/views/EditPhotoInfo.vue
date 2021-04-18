@@ -209,9 +209,9 @@ export default {
     width: 880px;
     padding: 10px 0;
     margin: 0 auto 20px;
-    border: 10px solid #333;
-    border-radius: 5px;
-    background: #fff;
+    border: 10px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
     .con {
       display: flex;
@@ -281,6 +281,10 @@ export default {
   .footer {
     width: 880px;
     margin: auto;
+  }
+
+  .ivu-divider-horizontal {
+    color: #fff !important;
   }
 }
 </style>

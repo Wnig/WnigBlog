@@ -238,9 +238,9 @@ export default {
     min-height: 450px;
     margin: 0 auto 20px;
     padding: 13px 10px;
-    border: 10px solid #333;
+    border: 10px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
     .article-con {
       position: relative;
@@ -253,11 +253,11 @@ export default {
         justify-content: flex-start;
         margin-bottom: 20px;
         padding: 5px 20px;
-        color: #333;
+        color: #fff;
         text-align: center;
         font-size: 18px;
         font-weight: 700;
-        border-left: 3px solid #333;
+        border-left: 3px solid rgba(255, 255, 255, 0.1);
       }
       .art-con {
         #edit {
