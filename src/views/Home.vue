@@ -3,7 +3,7 @@
     <div class="ignore">
       <div class="my-home">
         <div class="blog-name">
-          <p>Welcome To Wnig's Blog</p>
+          <p>Wnig's Blog</p>
           <div class="right-ico">
             <Icon @click="enterHome" type="md-list-box" size="24" />
             <Icon @click="openMyInfo" type="logo-twitch" size="24" />

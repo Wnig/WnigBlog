@@ -1,32 +1,35 @@
 <template>
   <div class="header">
     <div class="ignore">
-      <img class="bg"
-           v-lazy="headerUrl"
-           alt="" />
       <div class="header-con">
-        <div class="login"
-             @click="goLogin">
-          <Icon type="md-contact"
-                size="20" />
-          {{ username ? username : "登录" }}
-          <Icon v-if="!username"
-                type="md-arrow-dropright"
-                size="20" />
+        <div class="header-img">
+          <img :src="headerUrl" alt="">
+          <p>Wnig's Blog</p>
         </div>
-        <div class="click-btn"
-             v-if="isClick">
-          <strong @click="preBtn">
-            <Icon type="md-arrow-dropleft"
+        <div class="login-con">
+          <div class="login"
+              @click="goLogin">
+            <Icon type="md-contact"
                   size="20" />
-            Blog
-          </strong>
-          <strong class="strong">Wnig's</strong>
-          <strong @click="nextBtn">Back
-            <Icon type="md-arrow-dropright"
-                  size="20" /></strong>
+            {{ username ? username : "登录" }}
+            <Icon v-if="!username"
+                  type="md-arrow-dropright"
+                  size="20" />
+          </div>
+          <div class="click-btn"
+              v-if="isClick">
+            <strong @click="preBtn">
+              <Icon type="md-arrow-dropleft"
+                    size="20" />
+              Blog
+            </strong>
+            <strong class="strong">Wnig's</strong>
+            <strong @click="nextBtn">Back
+              <Icon type="md-arrow-dropright"
+                    size="20" /></strong>
+          </div>
+          <span class="sign">{{ sentence }}</span>
         </div>
-        <span class="sign">{{ sentence }}</span>
       </div>
     </div>
     <div class="i-mobile">
@@ -102,53 +105,83 @@ export default {
 @import "@/assets/scss/common.scss";
 .header {
   .ignore {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 880px;
-    height: 120px;
-    margin: 0 auto 20px;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02), 0 4px 10px rgba(0, 0, 0, 0.06);
-    .bg {
-      width: 100%;
-      object-fit: contain;
-    }
+    padding-top: 20px;
+    margin: 0px auto 20px;
     .header-con {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
+      position: relative;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      flex-direction: column;
-      padding: 20px;
-      height: 100%;
-      z-index: 2;
-      strong {
-        color: #fafafa;
-        font-size: 16px;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+      background: #000;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: 0 auto;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 1);
       }
-      .strong {
-        margin: 0 10px;
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 1);
       }
-      .sign {
-        color: #fafafa;
-        font-size: 14px;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+      .header-img {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 10px 0;
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: fill;
+          border-radius: 10px;
+        }
+        p {
+          margin-left: 20px;
+          color: #fff;
+          font-size: 20px;
+        }
       }
-      .login {
-        color: #fafafa;
-        font-size: 14px;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
+      .login-con {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        flex-direction: column;
+        strong {
+          color: #fafafa;
+          font-size: 16px;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+        }
+        .strong {
+          margin: 0 10px;
+        }
+        .sign {
+          color: #fafafa;
+          font-size: 14px;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+        .login {
+          color: #fafafa;
+          font-size: 14px;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+        }
       }
     }
   }

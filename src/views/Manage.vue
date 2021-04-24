@@ -69,17 +69,38 @@ export default {
     }
   }
   .content {
+    position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     width: 880px;
-    min-height: 450px;
     margin: 0 auto 20px;
     padding: 13px;
-    border: 10px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.05);
+    background: #000;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 1);
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0px 5px 1px rgba(255, 255, 255, 1);
+    }
     .img-show {
       display: flex;
       align-items: flex-start;
@@ -90,7 +111,7 @@ export default {
         justify-content: flex-start;
         flex-direction: column;
         img {
-          width: 165px;
+          width: 180px;
           margin: 0 5px 5px 0px;
         }
       }
