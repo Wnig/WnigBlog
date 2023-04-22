@@ -57,7 +57,7 @@ module.exports = {
         // target: "http://www.xxxiwnig.com",
         // target: "http://192.168.3.37/my-blog",
         // target: "http://192.168.0.102/my-blog",
-        target: "http://192.168.3.200:8085/my-blog",
+        target: "http://192.168.110.29:8085/my-blog",
         // target: "http://192.168.3.125:8085/my-blog",
         changeOrigin: true,
         pathRewrite: {
